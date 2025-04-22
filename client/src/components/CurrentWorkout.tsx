@@ -93,8 +93,8 @@ export default function CurrentWorkout() {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #8B4513",
-          boxShadow: "3px 3px 0 #8B4513",
+          border: "2px solid #A9C0A6",
+          boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
@@ -111,8 +111,8 @@ export default function CurrentWorkout() {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #8B4513",
-          boxShadow: "3px 3px 0 #8B4513",
+          border: "2px solid #A9C0A6",
+          boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
@@ -127,8 +127,8 @@ export default function CurrentWorkout() {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #8B4513",
-          boxShadow: "3px 3px 0 #8B4513",
+          border: "2px solid #A9C0A6",
+          boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
@@ -154,7 +154,7 @@ export default function CurrentWorkout() {
         <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] tracking-wider">
           DAY {workout.day}: {workout.name}
         </h2>
-        <span className="bg-[#CD5C5C] text-white font-['Bebas_Neue'] px-3 py-1 rounded-lg text-sm">
+        <span className="bg-[#EE6C4D] text-white font-['Bebas_Neue'] px-3 py-1 rounded-lg text-sm">
           {isWorkoutCompleted ? "COMPLETED" : "CURRENT DAY"}
         </span>
       </div>

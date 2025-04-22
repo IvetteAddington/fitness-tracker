@@ -139,7 +139,7 @@ export default function WorkoutTimer() {
         <button 
           onClick={startTimer}
           disabled={isRunning || seconds === 0}
-          className="bg-[#8B4513] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
+          className="bg-[#A9C0A6] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -150,7 +150,7 @@ export default function WorkoutTimer() {
         <button 
           onClick={pauseTimer}
           disabled={!isRunning}
-          className="bg-[#CD5C5C] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
+          className="bg-[#EE6C4D] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -161,7 +161,7 @@ export default function WorkoutTimer() {
         <button 
           onClick={resetTimer}
           disabled={seconds === parseInt(selectedPreset) && !isRunning}
-          className="bg-[#D2B48C] text-[#8B4513] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
+          className="bg-[#F4B942] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -174,7 +174,7 @@ export default function WorkoutTimer() {
         <select 
           value={selectedPreset}
           onChange={handlePresetChange}
-          className="bg-[#FFF8DC] border-2 border-[#8B4513] font-['Courier_Prime'] p-2 rounded"
+          className="bg-[#FFF8DC] border-2 border-[#A9C0A6] font-['Courier_Prime'] p-2 rounded"
         >
           <option value="60">Rest - 1 minute</option>
           <option value="90">Rest - 1.5 minutes</option>
