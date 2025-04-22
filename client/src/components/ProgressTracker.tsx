@@ -59,7 +59,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
       <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">PROGRESS TRACKER</h2>
       
       <div className="mb-4">
-        <div className="flex justify-between font-['Courier_Prime'] text-sm text-[#8B4513] mb-1">
+        <div className="flex justify-between font-['Courier_Prime'] text-sm text-[#F4B942] mb-1">
           <span>DAY 1</span>
           <span>{progress.completedDays}/{totalDays} DAYS ({completionPercentage}%)</span>
           <span>DAY {totalDays}</span>
@@ -69,7 +69,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
           style={{
             height: "20px",
             backgroundColor: "#D2B48C",
-            border: "2px solid #8B4513",
+            border: "2px solid #A9C0A6",
             boxShadow: "inset 0 0 5px rgba(0,0,0,0.2)"
           }}
         >
@@ -77,7 +77,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
             className="h-full"
             style={{
               width: `${completionPercentage}%`,
-              backgroundColor: "#556B2F"
+              backgroundColor: "#A9C0A6"
             }}
           ></div>
         </div>
@@ -108,7 +108,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
       </div>
       
       <div className="mt-6">
-        <h3 className="font-['Bebas_Neue'] text-xl text-[#8B4513] mb-2">RECENT ACTIVITY</h3>
+        <h3 className="font-['Bebas_Neue'] text-xl text-[#EE6C4D] mb-2">RECENT ACTIVITY</h3>
         <div className="bg-[#FFF8DC] p-3 font-['Courier_Prime'] text-sm">
           {recentCompletedWorkouts.length > 0 ? (
             recentCompletedWorkouts.map((workout) => (

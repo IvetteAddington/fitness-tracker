@@ -95,7 +95,7 @@ export default function WorkoutTimer() {
           key={i} 
           className={`absolute ${isLarge ? 'h-[15px] w-[3px]' : 'h-[10px] w-[2px]'}`}
           style={{
-            background: "#8B4513",
+            background: "#A9C0A6",
             transformOrigin: "center 95px",
             transform: `rotate(${rotation}deg)`,
             left: "calc(50% - 1px)",
@@ -112,24 +112,24 @@ export default function WorkoutTimer() {
       className="p-5 text-center"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #8B4513",
-        boxShadow: "3px 3px 0 #8B4513",
+        border: "2px solid #A9C0A6",
+        boxShadow: "3px 3px 0 #F4B942",
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] mb-4 tracking-wider">WORKOUT TIMER</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] mb-4 tracking-wider">WORKOUT TIMER</h2>
       
       <div className="mb-6">
         <div 
           className="relative w-48 h-48 rounded-full mx-auto flex items-center justify-center"
           style={{
-            border: "8px solid #8B4513",
+            border: "8px solid #A9C0A6",
             background: "#FFF8DC",
-            boxShadow: "inset 0 0 10px rgba(0,0,0,0.2), 0 0 0 4px #D2B48C"
+            boxShadow: "inset 0 0 10px rgba(0,0,0,0.2), 0 0 0 4px #F4B942"
           }}
         >
           {renderTickMarks()}
-          <div className="font-['Bebas_Neue'] text-4xl text-[#8B4513]">
+          <div className="font-['Bebas_Neue'] text-4xl text-[#EE6C4D]">
             {formatTime(seconds)}
           </div>
         </div>
