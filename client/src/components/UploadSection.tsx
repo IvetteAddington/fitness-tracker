@@ -143,15 +143,15 @@ export default function UploadSection() {
       <div 
         className="mb-8 p-5"
         style={{
-          backgroundColor: "#F5F5DC",
-          border: "2px solid #A9C0A6",
-          boxShadow: "3px 3px 0 #F4B942",
+          backgroundColor: "#FFF5E4",
+          border: "2px solid #6A9C89",
+          boxShadow: "3px 3px 0 #FFA725",
           position: "relative"
         }}
       >
         <div className="clipboard-top relative" style={{
           height: "30px",
-          backgroundColor: "#A9C0A6",
+          backgroundColor: "#6A9C89",
           borderRadius: "5px 5px 0 0",
           margin: "-20px -20px 20px -20px"
         }}>
@@ -164,13 +164,13 @@ export default function UploadSection() {
             transform: "translateY(-7px)"
           }}></div>
         </div>
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
         
-        <div className="upload-area bg-[#F5F5DC] p-6 text-center border-2 border-dashed border-[#F4D35E]">
-          <p className="font-['Courier_Prime'] text-[#F4B942] font-bold mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
+        <div className="upload-area bg-[#FFF5E4] p-6 text-center border-2 border-dashed border-[#FFA725]">
+          <p className="font-['Courier_Prime'] text-[#FFA725] font-bold mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
           <label 
             htmlFor="workout-file" 
-            className="cursor-pointer inline-block bg-[#A9C0A6] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+            className="cursor-pointer inline-block bg-[#6A9C89] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
             style={{
               transition: "all 0.1s ease-in-out"
             }}
@@ -184,16 +184,16 @@ export default function UploadSection() {
             className="sr-only"
             onChange={handleFileChange}
           />
-          <p className="text-sm font-['Courier_Prime'] mt-3 text-[#F4B942] opacity-75">Accepts CSV or JSON format</p>
+          <p className="text-sm font-['Courier_Prime'] mt-3 text-[#FFA725] opacity-75">Accepts CSV or JSON format</p>
           
           {file && (
             <div className="mt-4">
-              <p className="font-bold text-[#EE6C4D] font-['Courier_Prime']">
+              <p className="font-bold text-[#FFA725] font-['Courier_Prime']">
                 {file.name}
               </p>
               <button
                 onClick={handleUpload}
-                className="mt-3 bg-[#EE6C4D] text-white font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+                className="mt-3 bg-[#FFA725] text-white font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
                 disabled={uploadMutation.isPending}
               >
                 {uploadMutation.isPending ? "UPLOADING..." : "UPLOAD PLAN"}
@@ -205,7 +205,7 @@ export default function UploadSection() {
         <div className="mt-4 text-center">
           <button 
             onClick={loadSampleData}
-            className="text-[#EE6C4D] underline font-['Courier_Prime'] text-sm"
+            className="text-[#6A9C89] underline font-['Courier_Prime'] text-sm"
             disabled={uploadMutation.isPending}
           >
             No file? Try sample workout plan
