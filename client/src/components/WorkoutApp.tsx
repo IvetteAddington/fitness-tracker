@@ -54,7 +54,7 @@ export default function WorkoutApp() {
               <div 
                 className="p-8 rounded-lg shadow-md text-center"
                 style={{
-                  backgroundColor: "#FFF8DC",
+                  backgroundColor: "#FFF5E4",
                   border: "2px solid #6A9C89",
                   boxShadow: "3px 3px 0 #FFA725",
                   position: "relative"
