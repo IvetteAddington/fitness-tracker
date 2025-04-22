@@ -153,7 +153,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
                   const isSelected = date.toDateString() === props.date.toDateString();
                   
                   return (
-                    <div className="relative flex items-center justify-center w-9 h-9">
+                    <div className="relative w-9 h-9" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                       {/* Background for completed days */}
                       {isCompleted && !isToday && !isSelected && (
                         <div 
@@ -187,10 +187,10 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
                         ></div>
                       )}
                       
-                      <div className={`relative z-10 flex items-center justify-center w-full h-full ${
+                      <div className={`relative z-10 flex items-center justify-center w-full h-full text-center ${
                         (isToday || isSelected) ? "text-[#FFF5E4] font-bold" : 
                         isCompleted ? "font-bold text-[#6A9C89]" : ""
-                      }`}>
+                      }`} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
                         {props.date.getDate()}
                       </div>
                     </div>
@@ -198,26 +198,18 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
                 }
               }}
               classNames={{
-                day_today: "bg-[#FFA725] text-[#FFF5E4] font-bold hover:bg-[#FFA725]/90",
-                day_selected: "bg-[#6A9C89] text-[#FFF5E4] font-bold hover:bg-[#6A9C89]/90",
-                day: cn(
-                  "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
-                ),
-                day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
-                day_hidden: "invisible",
+                day: cn("h-9 w-9 p-0 font-normal flex items-center justify-center aria-selected:opacity-100"),
+                cell: "p-0 relative text-center flex items-center justify-center",
+                head_cell: "flex items-center justify-center w-9 font-normal text-[0.8rem]",
                 caption: "flex justify-center pt-1 relative items-center",
                 caption_label: "text-[#6A9C89] font-bold",
+                table: "w-full border-collapse space-y-1",
+                head_row: "flex justify-center",
+                row: "flex w-full mt-2 justify-center",
                 nav: "space-x-1 flex items-center",
                 nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 text-[#6A9C89]",
                 nav_button_previous: "absolute left-1",
                 nav_button_next: "absolute right-1",
-                table: "w-full border-collapse space-y-1",
-                head_row: "flex",
-                head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
-                row: "flex w-full mt-2",
-                cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                day_range_end: "aria-selected:rounded-r-md",
-                day_range_start: "aria-selected:rounded-l-md",
                 day_outside: "text-muted-foreground opacity-50",
               }}
             />
