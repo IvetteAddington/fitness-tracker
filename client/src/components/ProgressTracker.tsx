@@ -51,12 +51,12 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
       className="p-5"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #8B4513",
-        boxShadow: "3px 3px 0 #8B4513",
+        border: "2px solid #A9C0A6",
+        boxShadow: "3px 3px 0 #F4B942",
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] text-center mb-4 tracking-wider">PROGRESS TRACKER</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">PROGRESS TRACKER</h2>
       
       <div className="mb-4">
         <div className="flex justify-between font-['Courier_Prime'] text-sm text-[#8B4513] mb-1">
@@ -84,7 +84,7 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
       </div>
       
       <div className="mt-6">
-        <h3 className="font-['Bebas_Neue'] text-xl text-[#8B4513] mb-2">WORKOUT STATS</h3>
+        <h3 className="font-['Bebas_Neue'] text-xl text-[#EE6C4D] mb-2">WORKOUT STATS</h3>
         <div className="bg-[#FFF8DC] p-4 font-['Courier_Prime'] text-sm">
           <div className="grid grid-cols-2 gap-2">
             <div className="flex justify-between">

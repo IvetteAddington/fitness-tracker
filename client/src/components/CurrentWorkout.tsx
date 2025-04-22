@@ -151,7 +151,7 @@ export default function CurrentWorkout() {
       }}
     >
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] tracking-wider">
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] tracking-wider">
           DAY {workout.day}: {workout.name}
         </h2>
         <span className="bg-[#CD5C5C] text-white font-['Bebas_Neue'] px-3 py-1 rounded-lg text-sm">
@@ -160,7 +160,7 @@ export default function CurrentWorkout() {
       </div>
       
       <div className="mb-6">
-        <p className="font-['Courier_Prime'] text-[#8B4513]">{workout.notes}</p>
+        <p className="font-['Courier_Prime'] text-[#F4B942]">{workout.notes}</p>
       </div>
       
       {/* Exercise List */}
@@ -176,7 +176,7 @@ export default function CurrentWorkout() {
             }}
           >
             <div className="flex flex-wrap justify-between items-center mb-2">
-              <h3 className="font-['Bebas_Neue'] text-xl text-[#8B4513]">{exercise.name}</h3>
+              <h3 className="font-['Bebas_Neue'] text-xl text-[#EE6C4D]">{exercise.name}</h3>
               <span className="font-['Courier_Prime'] text-sm">{exercise.sets} sets × {exercise.reps}</span>
             </div>
             <p className="font-['Courier_Prime'] text-sm mb-3">{exercise.notes}</p>
@@ -199,7 +199,7 @@ export default function CurrentWorkout() {
       
       <div className="flex justify-between items-center">
         <button 
-          className="bg-[#8B4513] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#A9C0A6] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
