@@ -208,7 +208,7 @@ export default function ManualEntryForm() {
               type="text"
               value={planName}
               onChange={(e) => setPlanName(e.target.value)}
-              className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
+              className="w-full p-2 border border-[#A9C0A6] bg-white rounded"
               placeholder="e.g., 6-Week Strength Builder"
             />
           </div>
@@ -221,7 +221,7 @@ export default function ManualEntryForm() {
               max="60"
               value={totalDays}
               onChange={(e) => setTotalDays(parseInt(e.target.value) || 1)}
-              className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
+              className="w-full p-2 border border-[#A9C0A6] bg-white rounded"
             />
           </div>
 
@@ -257,7 +257,7 @@ export default function ManualEntryForm() {
                     type="text"
                     value={workout.name}
                     onChange={(e) => handleWorkoutNameChange(workoutIndex, e.target.value)}
-                    className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
+                    className="w-full p-2 border border-[#A9C0A6] bg-white rounded"
                     placeholder="e.g., Upper Body Strength"
                   />
                 </div>
@@ -269,7 +269,7 @@ export default function ManualEntryForm() {
                   <textarea
                     value={workout.notes}
                     onChange={(e) => handleWorkoutNotesChange(workoutIndex, e.target.value)}
-                    className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
+                    className="w-full p-2 border border-[#A9C0A6] bg-white rounded"
                     placeholder="Any notes for this workout day"
                     rows={2}
                   />
@@ -307,7 +307,7 @@ export default function ManualEntryForm() {
                           type="text"
                           value={exercise.name}
                           onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'name', e.target.value)}
-                          className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
+                          className="w-full p-1 border border-[#A9C0A6] border-opacity-70 rounded text-sm"
                           placeholder="e.g., Bench Press"
                         />
                       </div>
@@ -322,7 +322,7 @@ export default function ManualEntryForm() {
                             min="1"
                             value={exercise.sets}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'sets', parseInt(e.target.value) || 1)}
-                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#A9C0A6] border-opacity-70 rounded text-sm"
                           />
                         </div>
                         <div>
@@ -333,7 +333,7 @@ export default function ManualEntryForm() {
                             type="text"
                             value={exercise.reps}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'reps', e.target.value)}
-                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#A9C0A6] border-opacity-70 rounded text-sm"
                             placeholder="e.g., 8-10 or 30 sec"
                           />
                         </div>
@@ -348,7 +348,7 @@ export default function ManualEntryForm() {
                         type="text"
                         value={exercise.notes}
                         onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'notes', e.target.value)}
-                        className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
+                        className="w-full p-1 border border-[#A9C0A6] border-opacity-70 rounded text-sm"
                         placeholder="e.g., Keep back straight"
                       />
                     </div>
@@ -379,7 +379,7 @@ export default function ManualEntryForm() {
                             type="text"
                             value={exercise.supersetWith || ""}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'supersetWith', e.target.value)}
-                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#A9C0A6] border-opacity-70 rounded text-sm"
                             placeholder="e.g., Tricep Pushdowns"
                           />
                         </div>
