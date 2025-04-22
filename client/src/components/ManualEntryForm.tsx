@@ -183,14 +183,14 @@ export default function ManualEntryForm() {
       className="mb-6 p-4"
       style={{
         backgroundColor: "#F5F5DC",
-        border: "2px solid #73E2D6",
+        border: "2px solid #BEE4D0",
         boxShadow: "3px 3px 0 #F4B942",
         borderRadius: "5px"
       }}
     >
       <button
         onClick={() => setShowForm(!showForm)}
-        className="w-full text-center bg-[#73E2D6] text-white font-['Bebas_Neue'] text-xl px-4 py-2 rounded shadow hover:bg-opacity-90 transition-all"
+        className="w-full text-center bg-[#BEE4D0] text-white font-['Bebas_Neue'] text-xl px-4 py-2 rounded shadow hover:bg-opacity-90 transition-all"
       >
         {showForm ? "HIDE MANUAL ENTRY FORM" : "CREATE WORKOUT PLAN MANUALLY"}
       </button>

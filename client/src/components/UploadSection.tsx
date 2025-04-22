@@ -144,14 +144,14 @@ export default function UploadSection() {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#F5F5DC",
-          border: "2px solid #73E2D6",
+          border: "2px solid #BEE4D0",
           boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
         <div className="clipboard-top relative" style={{
           height: "30px",
-          backgroundColor: "#73E2D6",
+          backgroundColor: "#BEE4D0",
           borderRadius: "5px 5px 0 0",
           margin: "-20px -20px 20px -20px"
         }}>
@@ -164,13 +164,13 @@ export default function UploadSection() {
             transform: "translateY(-7px)"
           }}></div>
         </div>
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#73E2D6] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#BEE4D0] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
         
         <div className="upload-area bg-[#F5F5DC] p-6 text-center border-2 border-dashed border-[#F4D35E]">
           <p className="font-['Courier_Prime'] text-[#F4B942] font-bold mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
           <label 
             htmlFor="workout-file" 
-            className="cursor-pointer inline-block bg-[#73E2D6] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+            className="cursor-pointer inline-block bg-[#BEE4D0] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
             style={{
               transition: "all 0.1s ease-in-out"
             }}

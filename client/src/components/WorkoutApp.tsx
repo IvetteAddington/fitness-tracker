@@ -21,7 +21,7 @@ export default function WorkoutApp() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-['Bangers'] text-[#73E2D6] mb-4 tracking-wide">FIT TRACKER</h1>
+          <h1 className="text-4xl md:text-6xl font-['Bangers'] text-[#BEE4D0] mb-4 tracking-wide">FIT TRACKER</h1>
           <p className="font-['Courier_Prime'] text-[#ffffff] text-lg font-bold">Track your progress • Build your strength • Achieve your goals</p>
           <div className="mt-3 flex justify-center">
             <div className="h-2 w-64 bg-[#EE6C4D] rounded"></div>
@@ -55,12 +55,12 @@ export default function WorkoutApp() {
                 className="p-8 rounded-lg shadow-md text-center"
                 style={{
                   backgroundColor: "#F5F5DC",
-                  border: "2px solid #73E2D6",
+                  border: "2px solid #BEE4D0",
                   boxShadow: "3px 3px 0 #F4B942",
                   position: "relative"
                 }}
               >
-                <div className="font-['Pacifico'] text-[#73E2D6] text-3xl mb-4">
+                <div className="font-['Pacifico'] text-[#BEE4D0] text-3xl mb-4">
                   Welcome to Fit Tracker!
                 </div>
                 <p className="font-['Courier_Prime'] text-[#F4B942] mb-6 font-bold">
