@@ -6,6 +6,7 @@ import { parseWorkoutFile } from "@/lib/fileParser";
 import { WorkoutPlanFile } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useWorkout } from "@/lib/workoutContext";
+import ManualEntryForm from "./ManualEntryForm";
 
 export default function UploadSection() {
   const [file, setFile] = useState<File | null>(null);
@@ -138,77 +139,82 @@ export default function UploadSection() {
   };
 
   return (
-    <div 
-      className="mb-8 p-5"
-      style={{
-        backgroundColor: "#FFF8DC",
-        border: "2px solid #8B4513",
-        boxShadow: "3px 3px 0 #8B4513",
-        position: "relative"
-      }}
-    >
-      <div className="clipboard-top relative" style={{
-        height: "30px",
-        backgroundColor: "#8B4513",
-        borderRadius: "5px 5px 0 0",
-        margin: "-20px -20px 20px -20px"
-      }}>
-        <div className="clipboard-clip" style={{
-          width: "60px",
-          height: "15px",
-          backgroundColor: "#555",
+    <div className="space-y-4">
+      <div 
+        className="mb-8 p-5"
+        style={{
+          backgroundColor: "#FFF8DC",
+          border: "2px solid #E83E8C",
+          boxShadow: "3px 3px 0 #E83E8C",
+          position: "relative"
+        }}
+      >
+        <div className="clipboard-top relative" style={{
+          height: "30px",
+          backgroundColor: "#E83E8C",
           borderRadius: "5px 5px 0 0",
-          margin: "0 auto",
-          transform: "translateY(-7px)"
-        }}></div>
-      </div>
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
-      
-      <div className="upload-area bg-[#FFF8DC] p-6 text-center border-2 border-dashed border-[#8B4513]">
-        <p className="font-['Courier_Prime'] mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
-        <label 
-          htmlFor="workout-file" 
-          className="cursor-pointer inline-block bg-[#8B4513] text-[#FFF8DC] font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
-          style={{
-            transition: "all 0.1s ease-in-out"
-          }}
-        >
-          <i className="fas fa-upload mr-2"></i> SELECT FILE
-        </label>
-        <input 
-          type="file" 
-          id="workout-file" 
-          accept=".json,.csv" 
-          className="sr-only"
-          onChange={handleFileChange}
-        />
-        <p className="text-sm font-['Courier_Prime'] mt-3 text-[#8B4513] opacity-75">Accepts CSV or JSON format</p>
+          margin: "-20px -20px 20px -20px"
+        }}>
+          <div className="clipboard-clip" style={{
+            width: "60px",
+            height: "15px",
+            backgroundColor: "#555",
+            borderRadius: "5px 5px 0 0",
+            margin: "0 auto",
+            transform: "translateY(-7px)"
+          }}></div>
+        </div>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#E83E8C] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
         
-        {file && (
-          <div className="mt-4">
-            <p className="font-bold text-[#556B2F] font-['Courier_Prime']">
-              {file.name}
-            </p>
-            <button
-              onClick={handleUpload}
-              className="mt-3 bg-[#556B2F] text-[#FFF8DC] font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
-              disabled={uploadMutation.isPending}
-            >
-              {uploadMutation.isPending ? "UPLOADING..." : "UPLOAD PLAN"}
-            </button>
-          </div>
-        )}
+        <div className="upload-area bg-[#FFF8DC] p-6 text-center border-2 border-dashed border-[#E83E8C]">
+          <p className="font-['Courier_Prime'] text-[#4CAF50] mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
+          <label 
+            htmlFor="workout-file" 
+            className="cursor-pointer inline-block bg-[#E83E8C] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+            style={{
+              transition: "all 0.1s ease-in-out"
+            }}
+          >
+            <i className="fas fa-upload mr-2"></i> SELECT FILE
+          </label>
+          <input 
+            type="file" 
+            id="workout-file" 
+            accept=".json,.csv" 
+            className="sr-only"
+            onChange={handleFileChange}
+          />
+          <p className="text-sm font-['Courier_Prime'] mt-3 text-[#4CAF50] opacity-75">Accepts CSV or JSON format</p>
+          
+          {file && (
+            <div className="mt-4">
+              <p className="font-bold text-[#4CAF50] font-['Courier_Prime']">
+                {file.name}
+              </p>
+              <button
+                onClick={handleUpload}
+                className="mt-3 bg-[#4CAF50] text-white font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+                disabled={uploadMutation.isPending}
+              >
+                {uploadMutation.isPending ? "UPLOADING..." : "UPLOAD PLAN"}
+              </button>
+            </div>
+          )}
+        </div>
+        
+        <div className="mt-4 text-center">
+          <button 
+            onClick={loadSampleData}
+            className="text-[#E83E8C] underline font-['Courier_Prime'] text-sm"
+            disabled={uploadMutation.isPending}
+          >
+            No file? Try sample workout plan
+          </button>
+        </div>
       </div>
       
-      <div className="mt-4 text-center">
-        <button 
-          onClick={loadSampleData}
-          className="text-[#CD5C5C] underline font-['Courier_Prime'] text-sm"
-          disabled={uploadMutation.isPending}
-        >
-          No file? Try sample workout plan
-        </button>
-      </div>
+      {/* Manual Entry Form */}
+      <ManualEntryForm />
     </div>
   );
 }
