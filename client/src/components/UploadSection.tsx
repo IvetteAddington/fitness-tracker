@@ -143,7 +143,7 @@ export default function UploadSection() {
       <div 
         className="mb-8 p-5"
         style={{
-          backgroundColor: "#FFF8DC",
+          backgroundColor: "#F5F5DC",
           border: "2px solid #73E2D6",
           boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
@@ -166,7 +166,7 @@ export default function UploadSection() {
         </div>
         <h2 className="text-2xl font-['Bebas_Neue'] text-[#73E2D6] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
         
-        <div className="upload-area bg-[#FFF8DC] p-6 text-center border-2 border-dashed border-[#F4D35E]">
+        <div className="upload-area bg-[#F5F5DC] p-6 text-center border-2 border-dashed border-[#F4D35E]">
           <p className="font-['Courier_Prime'] text-[#F4B942] font-bold mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
           <label 
             htmlFor="workout-file" 

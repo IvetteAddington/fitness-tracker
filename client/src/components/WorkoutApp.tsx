@@ -12,7 +12,7 @@ export default function WorkoutApp() {
     <div 
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundImage: "url('https://images.unsplash.com/photo-1583377997996-9ef7ded719db?auto=format&fit=crop&q=80&w=1200&ixlib=rb-4.0.3')",
+        backgroundColor: "#2A3D45",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center"
@@ -54,7 +54,7 @@ export default function WorkoutApp() {
               <div 
                 className="p-8 rounded-lg shadow-md text-center"
                 style={{
-                  backgroundColor: "#FFF8DC",
+                  backgroundColor: "#F5F5DC",
                   border: "2px solid #73E2D6",
                   boxShadow: "3px 3px 0 #F4B942",
                   position: "relative"
