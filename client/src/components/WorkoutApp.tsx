@@ -60,7 +60,7 @@ export default function WorkoutApp() {
                   position: "relative"
                 }}
               >
-                <div className="font-['Pacifico'] text-[#BEE4D0] text-3xl mb-4">
+                <div className="font-['Pacifico'] text-[#A9C0A6] text-3xl mb-4">
                   Welcome to Fit Tracker!
                 </div>
                 <p className="font-['Courier_Prime'] text-[#F4B942] mb-6 font-bold">

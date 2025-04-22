@@ -188,14 +188,14 @@ export default function ManualEntryForm() {
       className="mb-6 p-4"
       style={{
         backgroundColor: "#F5F5DC",
-        border: "2px solid #BEE4D0",
+        border: "2px solid #A9C0A6",
         boxShadow: "3px 3px 0 #F4B942",
         borderRadius: "5px"
       }}
     >
       <button
         onClick={() => setShowForm(!showForm)}
-        className="w-full text-center bg-[#BEE4D0] text-white font-['Bebas_Neue'] text-xl px-4 py-2 rounded shadow hover:bg-opacity-90 transition-all"
+        className="w-full text-center bg-[#A9C0A6] text-white font-['Bebas_Neue'] text-xl px-4 py-2 rounded shadow hover:bg-opacity-90 transition-all"
       >
         {showForm ? "HIDE MANUAL ENTRY FORM" : "CREATE WORKOUT PLAN MANUALLY"}
       </button>
@@ -226,7 +226,7 @@ export default function ManualEntryForm() {
           </div>
 
           <div className="my-6">
-            <h3 className="font-['Bebas_Neue'] text-[#BEE4D0] text-xl border-b border-[#F4B942] pb-1 mb-4">
+            <h3 className="font-['Bebas_Neue'] text-[#A9C0A6] text-xl border-b border-[#F4B942] pb-1 mb-4">
               WORKOUTS
             </h3>
 
@@ -275,14 +275,14 @@ export default function ManualEntryForm() {
                   />
                 </div>
 
-                <h5 className="font-['Bebas_Neue'] text-[#BEE4D0] mt-4 mb-2">
+                <h5 className="font-['Bebas_Neue'] text-[#A9C0A6] mt-4 mb-2">
                   EXERCISES
                 </h5>
 
                 {workout.exercises.map((exercise, exerciseIndex) => (
                   <div 
                     key={exerciseIndex} 
-                    className="mb-3 p-2 bg-white rounded border border-[#BEE4D0] border-opacity-70"
+                    className="mb-3 p-2 bg-white rounded border border-[#A9C0A6] border-opacity-70"
                   >
                     <div className="flex justify-between">
                       <h6 className="font-['Courier_Prime'] text-[#EE6C4D] text-sm">
@@ -390,7 +390,7 @@ export default function ManualEntryForm() {
 
                 <button
                   type="button"
-                  className="mt-2 flex items-center text-[#BEE4D0] bg-white border border-[#BEE4D0] text-sm rounded px-2 py-1"
+                  className="mt-2 flex items-center text-[#A9C0A6] bg-white border border-[#A9C0A6] text-sm rounded px-2 py-1"
                   onClick={() => addExercise(workoutIndex)}
                 >
                   <Plus size={14} className="mr-1" /> Add Exercise
@@ -400,7 +400,7 @@ export default function ManualEntryForm() {
 
             <button
               type="button"
-              className="flex items-center justify-center w-full bg-[#BEE4D0] bg-opacity-20 text-[#BEE4D0] border border-dashed border-[#BEE4D0] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
+              className="flex items-center justify-center w-full bg-[#A9C0A6] bg-opacity-20 text-[#A9C0A6] border border-dashed border-[#A9C0A6] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
               onClick={addWorkout}
             >
               <Plus size={16} className="mr-2" /> Add Another Workout Day
