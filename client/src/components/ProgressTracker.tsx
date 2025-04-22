@@ -16,9 +16,13 @@ interface Workout {
 }
 
 interface Progress {
+  userId: number;
+  workoutPlanId: number;
   completedDays: number;
+  completedWorkoutIds: number[];
   currentStreak: number;
   longestStreak: number;
+  id: number;
 }
 
 interface ProgressData {
@@ -141,26 +145,50 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
               mode="single"
               selected={date}
               onSelect={(newDate) => newDate && setDate(newDate)}
-              className="w-full"
-              modifiersClassNames={{
-                today: "bg-[#FFA725] text-[#FFF5E4] font-bold",
-                selected: "bg-[#6A9C89] text-[#FFF5E4] font-bold",
-              }}
-              modifiers={{
-                completed: (day) => hasCompletedWorkout(day)
-              }}
-              styles={{
-                day: {
-                  "&[aria-selected='true']": {
-                    backgroundColor: "#6A9C89",
-                    color: "#FFF5E4"
-                  }
-                },
-                day_completed: {
-                  backgroundColor: "#C1D8C3",
-                  fontWeight: "bold",
-                  color: "#6A9C89"
+              className="w-full bg-[#FFF8DC] border-0 rounded-md"
+              components={{
+                Day: (props) => {
+                  const isCompleted = hasCompletedWorkout(props.date);
+                  return (
+                    <div className="relative flex items-center justify-center">
+                      {isCompleted && (
+                        <div 
+                          className="absolute inset-0 rounded-full" 
+                          style={{
+                            backgroundColor: "#C1D8C3",
+                            zIndex: 0
+                          }}
+                        ></div>
+                      )}
+                      <div className="relative z-10">
+                        {props.date.getDate()}
+                      </div>
+                    </div>
+                  );
                 }
+              }}
+              classNames={{
+                day_today: "bg-[#FFA725] text-[#FFF5E4] font-bold hover:bg-[#FFA725]/90",
+                day_selected: "bg-[#6A9C89] text-[#FFF5E4] font-bold hover:bg-[#6A9C89]/90",
+                day: cn(
+                  "h-9 w-9 p-0 font-normal aria-selected:opacity-100"
+                ),
+                day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
+                day_hidden: "invisible",
+                caption: "flex justify-center pt-1 relative items-center",
+                caption_label: "text-[#6A9C89] font-bold",
+                nav: "space-x-1 flex items-center",
+                nav_button: "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 text-[#6A9C89]",
+                nav_button_previous: "absolute left-1",
+                nav_button_next: "absolute right-1",
+                table: "w-full border-collapse space-y-1",
+                head_row: "flex",
+                head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
+                row: "flex w-full mt-2",
+                cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
+                day_range_end: "aria-selected:rounded-r-md",
+                day_range_start: "aria-selected:rounded-l-md",
+                day_outside: "text-muted-foreground opacity-50",
               }}
             />
             <div className="flex items-center justify-center gap-6 mt-4 text-xs">
