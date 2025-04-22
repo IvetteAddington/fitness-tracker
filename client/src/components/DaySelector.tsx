@@ -69,8 +69,8 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       className="mb-8 p-5 overflow-hidden"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #A9C0A6",
-        boxShadow: "3px 3px 0 #F4B942",
+        border: "2px solid #6A9C89",
+        boxShadow: "3px 3px 0 #FFA725",
         position: "relative"
       }}
     >
@@ -90,8 +90,8 @@ export default function DaySelector({ planId }: DaySelectorProps) {
             <div 
               className={`px-4 py-2 rounded-full font-['Bebas_Neue'] text-center min-w-[70px] text-sm ${
                 activeDay === workout.day 
-                  ? "bg-[#8B4513] text-[#FFF8DC]" 
-                  : "bg-[#D2B48C] hover:bg-[#8B4513] hover:text-[#FFF8DC]"
+                  ? "bg-[#6A9C89] text-[#FFF8DC]" 
+                  : "bg-[#C1D8C3] hover:bg-[#6A9C89] hover:text-[#FFF8DC]"
               } ${workout.isCompleted ? "" : "opacity-50"}`}
             >
               <div>{activeDay === workout.day ? "TODAY" : "DAY"}</div>
