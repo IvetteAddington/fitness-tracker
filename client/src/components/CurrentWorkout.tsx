@@ -145,22 +145,22 @@ export default function CurrentWorkout() {
       className="mb-8 p-5"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #A9C0A6",
-        boxShadow: "3px 3px 0 #F4B942",
+        border: "2px solid #6A9C89",
+        boxShadow: "3px 3px 0 #FFA725",
         position: "relative"
       }}
     >
       <div className="mb-4 flex justify-between items-center">
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] tracking-wider">
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] tracking-wider">
           DAY {workout.day}: {workout.name}
         </h2>
-        <span className="bg-[#EE6C4D] text-white font-['Bebas_Neue'] px-3 py-1 rounded-lg text-sm">
+        <span className="bg-[#FFA725] text-white font-['Bebas_Neue'] px-3 py-1 rounded-lg text-sm">
           {isWorkoutCompleted ? "COMPLETED" : "CURRENT DAY"}
         </span>
       </div>
       
       <div className="mb-6">
-        <p className="font-['Courier_Prime'] text-[#F4B942]">{workout.notes}</p>
+        <p className="font-['Courier_Prime'] text-[#FFA725]">{workout.notes}</p>
       </div>
       
       {/* Exercise List */}
@@ -171,18 +171,18 @@ export default function CurrentWorkout() {
             className="bg-[#FFF8DC] p-4"
             style={{
               borderLeft: exercise.isCompleted 
-                ? "5px solid #A9C0A6" 
-                : "5px solid #EE6C4D"
+                ? "5px solid #6A9C89" 
+                : "5px solid #FFA725"
             }}
           >
             <div className="flex flex-wrap justify-between items-center mb-2">
-              <h3 className="font-['Bebas_Neue'] text-xl text-[#EE6C4D]">{exercise.name}</h3>
+              <h3 className="font-['Bebas_Neue'] text-xl text-[#6A9C89]">{exercise.name}</h3>
               <span className="font-['Courier_Prime'] text-sm">{exercise.sets} sets × {exercise.reps}</span>
             </div>
             <p className="font-['Courier_Prime'] text-sm mb-3">{exercise.notes}</p>
             <div className="flex justify-end">
               <button 
-                className={`${exercise.isCompleted ? 'bg-[#A9C0A6]' : 'bg-[#F4B942]'} text-[#FFF8DC] font-['Bebas_Neue'] px-3 py-1 text-sm rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out`}
+                className={`${exercise.isCompleted ? 'bg-[#6A9C89]' : 'bg-[#FFA725]'} text-[#FFF8DC] font-['Bebas_Neue'] px-3 py-1 text-sm rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out`}
                 style={{
                   transition: "all 0.1s ease-in-out"
                 }}

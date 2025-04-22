@@ -36,13 +36,13 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #A9C0A6",
-          boxShadow: "3px 3px 0 #F4B942",
+          border: "2px solid #6A9C89",
+          boxShadow: "3px 3px 0 #FFA725",
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
-        <div className="text-center font-['Courier_Prime'] py-4">Loading workout days...</div>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">Loading workout days...</div>
       </div>
     );
   }
@@ -53,13 +53,13 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #A9C0A6",
-          boxShadow: "3px 3px 0 #F4B942",
+          border: "2px solid #6A9C89",
+          boxShadow: "3px 3px 0 #FFA725",
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
-        <div className="text-center font-['Courier_Prime'] py-4">No workout days available</div>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">No workout days available</div>
       </div>
     );
   }
@@ -74,7 +74,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
       
       <div className="flex overflow-x-auto pb-4" style={{ scrollBehavior: "smooth" }}>
         {workouts.map((workout) => (
@@ -103,7 +103,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       
       <div className="flex justify-between mt-4">
         <button 
-          className="bg-[#8B4513] text-[#FFF8DC] font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#FFA725] text-[#FFF8DC] font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -114,7 +114,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         </button>
         
         <button 
-          className="bg-[#8B4513] text-[#FFF8DC] font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#FFA725] text-[#FFF8DC] font-['Bebas_Neue'] px-4 py-1 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
