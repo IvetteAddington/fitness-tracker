@@ -36,12 +36,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #8B4513",
-          boxShadow: "3px 3px 0 #8B4513",
+          border: "2px solid #A9C0A6",
+          boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
         <div className="text-center font-['Courier_Prime'] py-4">Loading workout days...</div>
       </div>
     );
@@ -53,12 +53,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         className="mb-8 p-5"
         style={{
           backgroundColor: "#FFF8DC",
-          border: "2px solid #8B4513",
-          boxShadow: "3px 3px 0 #8B4513",
+          border: "2px solid #A9C0A6",
+          boxShadow: "3px 3px 0 #F4B942",
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
         <div className="text-center font-['Courier_Prime'] py-4">No workout days available</div>
       </div>
     );
@@ -69,12 +69,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       className="mb-8 p-5 overflow-hidden"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #8B4513",
-        boxShadow: "3px 3px 0 #8B4513",
+        border: "2px solid #A9C0A6",
+        boxShadow: "3px 3px 0 #F4B942",
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#8B4513] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
       
       <div className="flex overflow-x-auto pb-4" style={{ scrollBehavior: "smooth" }}>
         {workouts.map((workout) => (
