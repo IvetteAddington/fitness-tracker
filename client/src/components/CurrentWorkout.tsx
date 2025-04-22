@@ -145,8 +145,8 @@ export default function CurrentWorkout() {
       className="mb-8 p-5"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #8B4513",
-        boxShadow: "3px 3px 0 #8B4513",
+        border: "2px solid #A9C0A6",
+        boxShadow: "3px 3px 0 #F4B942",
         position: "relative"
       }}
     >
