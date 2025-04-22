@@ -12,6 +12,8 @@ interface Exercise {
   sets: number;
   reps: string;
   notes: string;
+  isSuperset?: boolean;
+  supersetWith?: string;
 }
 
 interface Workout {
@@ -34,7 +36,7 @@ export default function ManualEntryForm() {
       day: 1,
       name: "",
       notes: "",
-      exercises: [{ name: "", sets: 3, reps: "", notes: "" }]
+      exercises: [{ name: "", sets: 3, reps: "", notes: "", isSuperset: false, supersetWith: "" }]
     }
   ]);
 
@@ -70,7 +72,7 @@ export default function ManualEntryForm() {
         day: 1,
         name: "",
         notes: "",
-        exercises: [{ name: "", sets: 3, reps: "", notes: "" }]
+        exercises: [{ name: "", sets: 3, reps: "", notes: "", isSuperset: false, supersetWith: "" }]
       }
     ]);
   };
@@ -87,7 +89,7 @@ export default function ManualEntryForm() {
     setWorkouts(newWorkouts);
   };
 
-  const handleExerciseChange = (workoutIndex: number, exerciseIndex: number, field: 'name' | 'sets' | 'reps' | 'notes', value: string | number) => {
+  const handleExerciseChange = (workoutIndex: number, exerciseIndex: number, field: 'name' | 'sets' | 'reps' | 'notes' | 'isSuperset' | 'supersetWith', value: string | number | boolean) => {
     const newWorkouts = [...workouts];
     newWorkouts[workoutIndex].exercises[exerciseIndex][field] = value;
     setWorkouts(newWorkouts);
@@ -95,7 +97,7 @@ export default function ManualEntryForm() {
 
   const addExercise = (workoutIndex: number) => {
     const newWorkouts = [...workouts];
-    newWorkouts[workoutIndex].exercises.push({ name: "", sets: 3, reps: "", notes: "" });
+    newWorkouts[workoutIndex].exercises.push({ name: "", sets: 3, reps: "", notes: "", isSuperset: false, supersetWith: "" });
     setWorkouts(newWorkouts);
   };
 
@@ -115,7 +117,7 @@ export default function ManualEntryForm() {
         day: newDay,
         name: "",
         notes: "",
-        exercises: [{ name: "", sets: 3, reps: "", notes: "" }]
+        exercises: [{ name: "", sets: 3, reps: "", notes: "", isSuperset: false, supersetWith: "" }]
       }
     ]);
   };
@@ -221,7 +223,7 @@ export default function ManualEntryForm() {
           </div>
 
           <div className="my-6">
-            <h3 className="font-['Bebas_Neue'] text-[#73E2D6] text-xl border-b border-[#F4B942] pb-1 mb-4">
+            <h3 className="font-['Bebas_Neue'] text-[#BEE4D0] text-xl border-b border-[#F4B942] pb-1 mb-4">
               WORKOUTS
             </h3>
 
@@ -270,7 +272,7 @@ export default function ManualEntryForm() {
                   />
                 </div>
 
-                <h5 className="font-['Bebas_Neue'] text-[#73E2D6] mt-4 mb-2">
+                <h5 className="font-['Bebas_Neue'] text-[#BEE4D0] mt-4 mb-2">
                   EXERCISES
                 </h5>
 
@@ -346,6 +348,39 @@ export default function ManualEntryForm() {
                         className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
                         placeholder="e.g., Keep back straight"
                       />
+                    </div>
+                    
+                    <div className="mt-2 border-t border-dashed border-[#F4B942] pt-2">
+                      <div className="flex items-center">
+                        <input
+                          type="checkbox"
+                          id={`superset-${workoutIndex}-${exerciseIndex}`}
+                          checked={exercise.isSuperset || false}
+                          onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'isSuperset', e.target.checked)}
+                          className="mr-2"
+                        />
+                        <label 
+                          htmlFor={`superset-${workoutIndex}-${exerciseIndex}`}
+                          className="font-['Courier_Prime'] text-[#EE6C4D] text-xs"
+                        >
+                          This is a superset
+                        </label>
+                      </div>
+                      
+                      {exercise.isSuperset && (
+                        <div className="mt-1">
+                          <label className="block font-['Courier_Prime'] text-[#F4B942] text-xs mb-1">
+                            Superset With:
+                          </label>
+                          <input
+                            type="text"
+                            value={exercise.supersetWith || ""}
+                            onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'supersetWith', e.target.value)}
+                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                            placeholder="e.g., Tricep Pushdowns"
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
