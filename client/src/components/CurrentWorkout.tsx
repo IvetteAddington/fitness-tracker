@@ -199,7 +199,7 @@ export default function CurrentWorkout() {
       
       <div className="flex justify-between items-center">
         <button 
-          className="bg-[#A9C0A6] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#6A9C89] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -210,7 +210,7 @@ export default function CurrentWorkout() {
         </button>
         
         <button 
-          className="bg-[#EE6C4D] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#FFA725] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}

@@ -95,7 +95,7 @@ export default function WorkoutTimer() {
           key={i} 
           className={`absolute ${isLarge ? 'h-[15px] w-[3px]' : 'h-[10px] w-[2px]'}`}
           style={{
-            background: "#A9C0A6",
+            background: "#6A9C89",
             transformOrigin: "center 95px",
             transform: `rotate(${rotation}deg)`,
             left: "calc(50% - 1px)",
@@ -112,24 +112,24 @@ export default function WorkoutTimer() {
       className="p-5 text-center"
       style={{
         backgroundColor: "#FFF8DC",
-        border: "2px solid #A9C0A6",
-        boxShadow: "3px 3px 0 #F4B942",
+        border: "2px solid #6A9C89",
+        boxShadow: "3px 3px 0 #FFA725",
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#A9C0A6] mb-4 tracking-wider">WORKOUT TIMER</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] mb-4 tracking-wider">WORKOUT TIMER</h2>
       
       <div className="mb-6">
         <div 
           className="relative w-48 h-48 rounded-full mx-auto flex items-center justify-center"
           style={{
-            border: "8px solid #A9C0A6",
+            border: "8px solid #6A9C89",
             background: "#FFF8DC",
-            boxShadow: "inset 0 0 10px rgba(0,0,0,0.2), 0 0 0 4px #F4B942"
+            boxShadow: "inset 0 0 10px rgba(0,0,0,0.2), 0 0 0 4px #FFA725"
           }}
         >
           {renderTickMarks()}
-          <div className="font-['Bebas_Neue'] text-4xl text-[#EE6C4D]">
+          <div className="font-['Bebas_Neue'] text-4xl text-[#FFA725]">
             {formatTime(seconds)}
           </div>
         </div>
@@ -139,7 +139,7 @@ export default function WorkoutTimer() {
         <button 
           onClick={startTimer}
           disabled={isRunning || seconds === 0}
-          className="bg-[#A9C0A6] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
+          className="bg-[#6A9C89] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
@@ -150,7 +150,7 @@ export default function WorkoutTimer() {
         <button 
           onClick={pauseTimer}
           disabled={!isRunning}
-          className="bg-[#EE6C4D] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
+          className="bg-[#FFA725] text-[#FFF8DC] font-['Bebas_Neue'] px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out disabled:opacity-50"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
