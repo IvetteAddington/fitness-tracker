@@ -171,8 +171,8 @@ export default function CurrentWorkout() {
             className="bg-[#FFF8DC] p-4"
             style={{
               borderLeft: exercise.isCompleted 
-                ? "5px solid #556B2F" 
-                : "5px solid #CD5C5C"
+                ? "5px solid #A9C0A6" 
+                : "5px solid #EE6C4D"
             }}
           >
             <div className="flex flex-wrap justify-between items-center mb-2">
@@ -182,7 +182,7 @@ export default function CurrentWorkout() {
             <p className="font-['Courier_Prime'] text-sm mb-3">{exercise.notes}</p>
             <div className="flex justify-end">
               <button 
-                className={`bg-${exercise.isCompleted ? '[#556B2F]' : '[#8B4513]'} text-[#FFF8DC] font-['Bebas_Neue'] px-3 py-1 text-sm rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out`}
+                className={`${exercise.isCompleted ? 'bg-[#A9C0A6]' : 'bg-[#F4B942]'} text-[#FFF8DC] font-['Bebas_Neue'] px-3 py-1 text-sm rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out`}
                 style={{
                   transition: "all 0.1s ease-in-out"
                 }}
@@ -210,7 +210,7 @@ export default function CurrentWorkout() {
         </button>
         
         <button 
-          className="bg-[#CD5C5C] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
+          className="bg-[#EE6C4D] text-[#FFF8DC] font-['Bebas_Neue'] px-5 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"
           style={{
             transition: "all 0.1s ease-in-out"
           }}
