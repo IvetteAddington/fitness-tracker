@@ -89,9 +89,12 @@ export default function ManualEntryForm() {
     setWorkouts(newWorkouts);
   };
 
-  const handleExerciseChange = (workoutIndex: number, exerciseIndex: number, field: 'name' | 'sets' | 'reps' | 'notes' | 'isSuperset' | 'supersetWith', value: string | number | boolean) => {
+  const handleExerciseChange = (workoutIndex: number, exerciseIndex: number, field: keyof Exercise, value: string | number | boolean) => {
     const newWorkouts = [...workouts];
-    newWorkouts[workoutIndex].exercises[exerciseIndex][field] = value;
+    newWorkouts[workoutIndex].exercises[exerciseIndex] = {
+      ...newWorkouts[workoutIndex].exercises[exerciseIndex],
+      [field]: value
+    };
     setWorkouts(newWorkouts);
   };
 
