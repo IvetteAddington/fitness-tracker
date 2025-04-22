@@ -228,15 +228,15 @@ export default function ManualEntryForm() {
             {workouts.map((workout, workoutIndex) => (
               <div 
                 key={workoutIndex} 
-                className="mb-6 p-4 border border-dashed border-[#E83E8C] rounded"
+                className="mb-6 p-4 border border-dashed border-[#F4D35E] rounded"
               >
                 <div className="flex justify-between items-center mb-3">
-                  <h4 className="font-['Bebas_Neue'] text-[#E83E8C]">
+                  <h4 className="font-['Bebas_Neue'] text-[#EE6C4D]">
                     DAY {workout.day}
                   </h4>
                   <button 
                     type="button"
-                    className="text-[#E83E8C] bg-white border border-[#E83E8C] rounded-full h-6 w-6 flex items-center justify-center"
+                    className="text-[#EE6C4D] bg-white border border-[#EE6C4D] rounded-full h-6 w-6 flex items-center justify-center"
                     onClick={() => removeWorkout(workoutIndex)}
                     disabled={workouts.length <= 1}
                   >
@@ -277,15 +277,15 @@ export default function ManualEntryForm() {
                 {workout.exercises.map((exercise, exerciseIndex) => (
                   <div 
                     key={exerciseIndex} 
-                    className="mb-3 p-2 bg-white rounded border border-[#E83E8C] border-opacity-30"
+                    className="mb-3 p-2 bg-white rounded border border-[#73E2D6] border-opacity-70"
                   >
                     <div className="flex justify-between">
-                      <h6 className="font-['Courier_Prime'] text-[#E83E8C] text-sm">
+                      <h6 className="font-['Courier_Prime'] text-[#EE6C4D] text-sm">
                         Exercise {exerciseIndex + 1}
                       </h6>
                       <button 
                         type="button"
-                        className="text-[#E83E8C] bg-white border border-[#E83E8C] rounded-full h-5 w-5 flex items-center justify-center"
+                        className="text-[#EE6C4D] bg-white border border-[#EE6C4D] rounded-full h-5 w-5 flex items-center justify-center"
                         onClick={() => removeExercise(workoutIndex, exerciseIndex)}
                         disabled={workout.exercises.length <= 1}
                       >
@@ -295,21 +295,21 @@ export default function ManualEntryForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
                       <div>
-                        <label className="block font-['Courier_Prime'] text-[#4CAF50] text-xs mb-1">
+                        <label className="block font-['Courier_Prime'] text-[#F4B942] text-xs mb-1">
                           Exercise Name:
                         </label>
                         <input
                           type="text"
                           value={exercise.name}
                           onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'name', e.target.value)}
-                          className="w-full p-1 border border-[#E83E8C] border-opacity-30 rounded text-sm"
+                          className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
                           placeholder="e.g., Bench Press"
                         />
                       </div>
 
                       <div className="grid grid-cols-2 gap-2">
                         <div>
-                          <label className="block font-['Courier_Prime'] text-[#4CAF50] text-xs mb-1">
+                          <label className="block font-['Courier_Prime'] text-[#F4B942] text-xs mb-1">
                             Sets:
                           </label>
                           <input
@@ -317,18 +317,18 @@ export default function ManualEntryForm() {
                             min="1"
                             value={exercise.sets}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'sets', parseInt(e.target.value) || 1)}
-                            className="w-full p-1 border border-[#E83E8C] border-opacity-30 rounded text-sm"
+                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
                           />
                         </div>
                         <div>
-                          <label className="block font-['Courier_Prime'] text-[#4CAF50] text-xs mb-1">
+                          <label className="block font-['Courier_Prime'] text-[#F4B942] text-xs mb-1">
                             Reps:
                           </label>
                           <input
                             type="text"
                             value={exercise.reps}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'reps', e.target.value)}
-                            className="w-full p-1 border border-[#E83E8C] border-opacity-30 rounded text-sm"
+                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
                             placeholder="e.g., 8-10 or 30 sec"
                           />
                         </div>
@@ -336,14 +336,14 @@ export default function ManualEntryForm() {
                     </div>
 
                     <div className="mt-2">
-                      <label className="block font-['Courier_Prime'] text-[#4CAF50] text-xs mb-1">
+                      <label className="block font-['Courier_Prime'] text-[#F4B942] text-xs mb-1">
                         Notes (optional):
                       </label>
                       <input
                         type="text"
                         value={exercise.notes}
                         onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'notes', e.target.value)}
-                        className="w-full p-1 border border-[#E83E8C] border-opacity-30 rounded text-sm"
+                        className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
                         placeholder="e.g., Keep back straight"
                       />
                     </div>
@@ -352,7 +352,7 @@ export default function ManualEntryForm() {
 
                 <button
                   type="button"
-                  className="mt-2 flex items-center text-[#4CAF50] bg-white border border-[#4CAF50] text-sm rounded px-2 py-1"
+                  className="mt-2 flex items-center text-[#73E2D6] bg-white border border-[#73E2D6] text-sm rounded px-2 py-1"
                   onClick={() => addExercise(workoutIndex)}
                 >
                   <Plus size={14} className="mr-1" /> Add Exercise
@@ -362,7 +362,7 @@ export default function ManualEntryForm() {
 
             <button
               type="button"
-              className="flex items-center justify-center w-full bg-[#4CAF50] bg-opacity-20 text-[#4CAF50] border border-dashed border-[#4CAF50] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
+              className="flex items-center justify-center w-full bg-[#73E2D6] bg-opacity-20 text-[#73E2D6] border border-dashed border-[#73E2D6] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
               onClick={addWorkout}
             >
               <Plus size={16} className="mr-2" /> Add Another Workout Day
@@ -372,14 +372,14 @@ export default function ManualEntryForm() {
           <div className="mt-6 flex justify-end">
             <button
               type="button"
-              className="mr-3 px-4 py-2 border border-[#E83E8C] text-[#E83E8C] rounded"
+              className="mr-3 px-4 py-2 border border-[#EE6C4D] text-[#EE6C4D] rounded"
               onClick={resetForm}
             >
               Reset
             </button>
             <button
               type="submit"
-              className="px-4 py-2 bg-[#E83E8C] text-white rounded flex items-center font-['Bebas_Neue'] text-lg"
+              className="px-4 py-2 bg-[#EE6C4D] text-white rounded flex items-center font-['Bebas_Neue'] text-lg"
               disabled={uploadMutation.isPending}
             >
               {uploadMutation.isPending ? "SAVING..." : (
