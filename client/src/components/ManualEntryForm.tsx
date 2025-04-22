@@ -182,7 +182,7 @@ export default function ManualEntryForm() {
     <div 
       className="mb-6 p-4"
       style={{
-        backgroundColor: "#FFF8DC",
+        backgroundColor: "#F5F5DC",
         border: "2px solid #73E2D6",
         boxShadow: "3px 3px 0 #F4B942",
         borderRadius: "5px"

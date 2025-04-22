@@ -12,7 +12,7 @@ export default function WorkoutApp() {
     <div 
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundColor: "#2A3D45",
+        backgroundColor: "#FF8282",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center"
@@ -22,7 +22,7 @@ export default function WorkoutApp() {
         {/* Header */}
         <header className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-['Bungee_Shade'] text-[#73E2D6] mb-4 tracking-wide">FIT TRACKER</h1>
-          <p className="font-['Courier_Prime'] text-[#F4D35E] text-lg font-bold">Track your progress • Build your strength • Achieve your goals</p>
+          <p className="font-['Courier_Prime'] text-[#ffffff] text-lg font-bold">Track your progress • Build your strength • Achieve your goals</p>
           <div className="mt-3 flex justify-center">
             <div className="h-2 w-64 bg-[#EE6C4D] rounded"></div>
           </div>
@@ -75,7 +75,7 @@ export default function WorkoutApp() {
           </div>
         </div>
         
-        <footer className="mt-12 text-center font-['Courier_Prime'] text-[#F4B942] text-sm">
+        <footer className="mt-12 text-center font-['Courier_Prime'] text-[#ffffff] text-sm">
           <p>© {new Date().getFullYear()} Fit Tracker • Keep pushing, keep growing</p>
         </footer>
       </div>
