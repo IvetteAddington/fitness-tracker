@@ -205,7 +205,7 @@ export default function ManualEntryForm() {
               type="text"
               value={planName}
               onChange={(e) => setPlanName(e.target.value)}
-              className="w-full p-2 border border-[#73E2D6] bg-white rounded"
+              className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
               placeholder="e.g., 6-Week Strength Builder"
             />
           </div>
@@ -218,7 +218,7 @@ export default function ManualEntryForm() {
               max="60"
               value={totalDays}
               onChange={(e) => setTotalDays(parseInt(e.target.value) || 1)}
-              className="w-full p-2 border border-[#73E2D6] bg-white rounded"
+              className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
             />
           </div>
 
@@ -254,7 +254,7 @@ export default function ManualEntryForm() {
                     type="text"
                     value={workout.name}
                     onChange={(e) => handleWorkoutNameChange(workoutIndex, e.target.value)}
-                    className="w-full p-2 border border-[#73E2D6] bg-white rounded"
+                    className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
                     placeholder="e.g., Upper Body Strength"
                   />
                 </div>
@@ -266,7 +266,7 @@ export default function ManualEntryForm() {
                   <textarea
                     value={workout.notes}
                     onChange={(e) => handleWorkoutNotesChange(workoutIndex, e.target.value)}
-                    className="w-full p-2 border border-[#73E2D6] bg-white rounded"
+                    className="w-full p-2 border border-[#BEE4D0] bg-white rounded"
                     placeholder="Any notes for this workout day"
                     rows={2}
                   />
@@ -279,7 +279,7 @@ export default function ManualEntryForm() {
                 {workout.exercises.map((exercise, exerciseIndex) => (
                   <div 
                     key={exerciseIndex} 
-                    className="mb-3 p-2 bg-white rounded border border-[#73E2D6] border-opacity-70"
+                    className="mb-3 p-2 bg-white rounded border border-[#BEE4D0] border-opacity-70"
                   >
                     <div className="flex justify-between">
                       <h6 className="font-['Courier_Prime'] text-[#EE6C4D] text-sm">
