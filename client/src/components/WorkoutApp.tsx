@@ -12,7 +12,7 @@ export default function WorkoutApp() {
     <div 
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundColor: "#FF8282",
+        backgroundColor: "#FFC0CB",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center"

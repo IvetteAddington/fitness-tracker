@@ -9,6 +9,6 @@
 
   body {
     @apply font-sans antialiased text-foreground;
-    background-color: #FF8282;
+    background-color: #FFC0CB;
   }
 }
