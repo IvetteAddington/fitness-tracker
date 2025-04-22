@@ -304,7 +304,7 @@ export default function ManualEntryForm() {
                           type="text"
                           value={exercise.name}
                           onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'name', e.target.value)}
-                          className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                          className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
                           placeholder="e.g., Bench Press"
                         />
                       </div>
@@ -319,7 +319,7 @@ export default function ManualEntryForm() {
                             min="1"
                             value={exercise.sets}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'sets', parseInt(e.target.value) || 1)}
-                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
                           />
                         </div>
                         <div>
@@ -330,7 +330,7 @@ export default function ManualEntryForm() {
                             type="text"
                             value={exercise.reps}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'reps', e.target.value)}
-                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
                             placeholder="e.g., 8-10 or 30 sec"
                           />
                         </div>
@@ -345,7 +345,7 @@ export default function ManualEntryForm() {
                         type="text"
                         value={exercise.notes}
                         onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'notes', e.target.value)}
-                        className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                        className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
                         placeholder="e.g., Keep back straight"
                       />
                     </div>
@@ -376,7 +376,7 @@ export default function ManualEntryForm() {
                             type="text"
                             value={exercise.supersetWith || ""}
                             onChange={(e) => handleExerciseChange(workoutIndex, exerciseIndex, 'supersetWith', e.target.value)}
-                            className="w-full p-1 border border-[#73E2D6] border-opacity-70 rounded text-sm"
+                            className="w-full p-1 border border-[#BEE4D0] border-opacity-70 rounded text-sm"
                             placeholder="e.g., Tricep Pushdowns"
                           />
                         </div>
@@ -387,7 +387,7 @@ export default function ManualEntryForm() {
 
                 <button
                   type="button"
-                  className="mt-2 flex items-center text-[#73E2D6] bg-white border border-[#73E2D6] text-sm rounded px-2 py-1"
+                  className="mt-2 flex items-center text-[#BEE4D0] bg-white border border-[#BEE4D0] text-sm rounded px-2 py-1"
                   onClick={() => addExercise(workoutIndex)}
                 >
                   <Plus size={14} className="mr-1" /> Add Exercise
@@ -397,7 +397,7 @@ export default function ManualEntryForm() {
 
             <button
               type="button"
-              className="flex items-center justify-center w-full bg-[#73E2D6] bg-opacity-20 text-[#73E2D6] border border-dashed border-[#73E2D6] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
+              className="flex items-center justify-center w-full bg-[#BEE4D0] bg-opacity-20 text-[#BEE4D0] border border-dashed border-[#BEE4D0] rounded px-4 py-2 hover:bg-opacity-30 transition-all"
               onClick={addWorkout}
             >
               <Plus size={16} className="mr-2" /> Add Another Workout Day
