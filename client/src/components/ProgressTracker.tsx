@@ -149,9 +149,13 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
               components={{
                 Day: (props) => {
                   const isCompleted = hasCompletedWorkout(props.date);
+                  const isToday = new Date().toDateString() === props.date.toDateString();
+                  const isSelected = date.toDateString() === props.date.toDateString();
+                  
                   return (
-                    <div className="relative flex items-center justify-center">
-                      {isCompleted && (
+                    <div className="relative flex items-center justify-center w-9 h-9">
+                      {/* Background for completed days */}
+                      {isCompleted && !isToday && !isSelected && (
                         <div 
                           className="absolute inset-0 rounded-full" 
                           style={{
@@ -160,7 +164,33 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
                           }}
                         ></div>
                       )}
-                      <div className="relative z-10">
+                      
+                      {/* Today marker */}
+                      {isToday && (
+                        <div 
+                          className="absolute inset-0 rounded-full" 
+                          style={{
+                            backgroundColor: "#FFA725",
+                            zIndex: 0
+                          }}
+                        ></div>
+                      )}
+                      
+                      {/* Selected day marker */}
+                      {isSelected && !isToday && (
+                        <div 
+                          className="absolute inset-0 rounded-full" 
+                          style={{
+                            backgroundColor: "#6A9C89",
+                            zIndex: 0
+                          }}
+                        ></div>
+                      )}
+                      
+                      <div className={`relative z-10 flex items-center justify-center w-full h-full ${
+                        (isToday || isSelected) ? "text-[#FFF5E4] font-bold" : 
+                        isCompleted ? "font-bold text-[#6A9C89]" : ""
+                      }`}>
                         {props.date.getDate()}
                       </div>
                     </div>
@@ -191,14 +221,18 @@ export default function ProgressTracker({ planId }: ProgressTrackerProps) {
                 day_outside: "text-muted-foreground opacity-50",
               }}
             />
-            <div className="flex items-center justify-center gap-6 mt-4 text-xs">
+            <div className="flex items-center justify-center gap-4 mt-4 text-xs">
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded" style={{ backgroundColor: "#C1D8C3" }}></div>
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#C1D8C3" }}></div>
                 <span>Completed</span>
               </div>
               <div className="flex items-center gap-1">
-                <div className="w-3 h-3 rounded" style={{ backgroundColor: "#FFA725" }}></div>
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#FFA725" }}></div>
                 <span>Today</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: "#6A9C89" }}></div>
+                <span>Selected</span>
               </div>
             </div>
           </div>
