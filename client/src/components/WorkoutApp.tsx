@@ -12,7 +12,7 @@ export default function WorkoutApp() {
     <div 
       className="min-h-screen py-8 px-4 sm:px-6 lg:px-8"
       style={{
-        backgroundColor: "#FFC0CB",
+        backgroundColor: "#FFF5E4",
         backgroundSize: "cover",
         backgroundAttachment: "fixed",
         backgroundPosition: "center"
@@ -21,10 +21,10 @@ export default function WorkoutApp() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <header className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-['Bangers'] text-[#A9C0A6] mb-4 tracking-wide">FIT TRACKER</h1>
-          <p className="font-['Courier_Prime'] text-[#ffffff] text-lg font-bold">Track your progress • Build your strength • Achieve your goals</p>
+          <h1 className="text-4xl md:text-6xl font-['Bangers'] text-[#6A9C89] mb-4 tracking-wide">FIT TRACKER</h1>
+          <p className="font-['Courier_Prime'] text-[#6A9C89] text-lg font-bold">Track your progress • Build your strength • Achieve your goals</p>
           <div className="mt-3 flex justify-center">
-            <div className="h-2 w-64 bg-[#EE6C4D] rounded"></div>
+            <div className="h-2 w-64 bg-[#FFA725] rounded"></div>
           </div>
         </header>
         
@@ -54,20 +54,20 @@ export default function WorkoutApp() {
               <div 
                 className="p-8 rounded-lg shadow-md text-center"
                 style={{
-                  backgroundColor: "#F5F5DC",
-                  border: "2px solid #A9C0A6",
-                  boxShadow: "3px 3px 0 #F4B942",
+                  backgroundColor: "#FFF8DC",
+                  border: "2px solid #6A9C89",
+                  boxShadow: "3px 3px 0 #FFA725",
                   position: "relative"
                 }}
               >
-                <div className="font-['Pacifico'] text-[#A9C0A6] text-3xl mb-4">
+                <div className="font-['Pacifico'] text-[#6A9C89] text-3xl mb-4">
                   Welcome to Fit Tracker!
                 </div>
-                <p className="font-['Courier_Prime'] text-[#F4B942] mb-6 font-bold">
+                <p className="font-['Courier_Prime'] text-[#FFA725] mb-6 font-bold">
                   Please upload a workout plan to get started with your fitness journey.
                 </p>
-                <div className="h-px w-full bg-[#EE6C4D] opacity-40 my-4"></div>
-                <p className="font-['Courier_Prime'] text-[#F4B942] text-sm opacity-75 italic mt-4">
+                <div className="h-px w-full bg-[#C1D8C3] opacity-40 my-4"></div>
+                <p className="font-['Courier_Prime'] text-[#6A9C89] text-sm opacity-75 italic mt-4">
                   "The only bad workout is the one that didn't happen."
                 </p>
               </div>
@@ -75,7 +75,7 @@ export default function WorkoutApp() {
           </div>
         </div>
         
-        <footer className="mt-12 text-center font-['Courier_Prime'] text-[#ffffff] text-sm">
+        <footer className="mt-12 text-center font-['Courier_Prime'] text-[#6A9C89] text-sm">
           <p>© {new Date().getFullYear()} Fit Tracker • Keep pushing, keep growing</p>
         </footer>
       </div>
