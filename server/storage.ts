@@ -5,6 +5,8 @@ import {
   exercises, type Exercise, type InsertExercise,
   userProgress, type UserProgress, type InsertUserProgress
 } from "@shared/schema";
+import { SqliteStorage } from "./sqliteStorage";
+
 
 export interface IStorage {
   // User operations
@@ -216,4 +218,8 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new SqliteStorage();
+
+
+
+
