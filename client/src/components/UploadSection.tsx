@@ -72,7 +72,7 @@ export default function UploadSection() {
   const loadSampleData = () => {
     // Sample workout plan data - 2-week program
     const samplePlan: WorkoutPlanFile = {
-      name: "6-Week Strength Builder",
+      name: "Strength Builder Workout",
       totalDays: 42,
       workouts: [
         // Week 1
@@ -265,7 +265,7 @@ export default function UploadSection() {
         <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT PLAN</h2>
         
         <div className="upload-area bg-[#FFF5E4] p-6 text-center border-2 border-dashed border-[#FFA725]">
-          <p className="font-['Courier_Prime'] text-[#FFA725] font-bold mb-4">UPLOAD YOUR 6-8 WEEK WORKOUT ROUTINE</p>
+          <p className="font-['Courier_Prime'] text-[#FFA725] font-bold mb-4">UPLOAD WORKOUT ROUTINE</p>
           <label 
             htmlFor="workout-file" 
             className="cursor-pointer inline-block bg-[#6A9C89] text-white font-['Bebas_Neue'] text-xl px-6 py-2 rounded shadow-md hover:bg-opacity-90 transition-all duration-100 ease-in-out"

@@ -209,7 +209,7 @@ export default function ManualEntryForm() {
               value={planName}
               onChange={(e) => setPlanName(e.target.value)}
               className="w-full p-2 border border-[#A9C0A6] bg-white rounded"
-              placeholder="e.g., 6-Week Strength Builder"
+              placeholder="e.g., Strength Builder Workout"
             />
           </div>
 
