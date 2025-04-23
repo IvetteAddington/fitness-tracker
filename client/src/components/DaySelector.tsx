@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import { useWorkout } from "@/lib/workoutContext";
 
-// Array of weekday names
-const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+// Array of weekday names - starting with Monday as day 1
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 interface DaySelectorProps {
   planId: number;
@@ -106,7 +106,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
                 } ${workout.isCompleted ? "" : "opacity-50"}`}
               >
                 <div className="text-xl">
-                  {WEEKDAYS[workout.day % 7]}
+                  {WEEKDAYS[(workout.day - 1) % 7]}
                   {activeDay === workout.day && <div className="h-1 w-10 bg-[#FFF8DC] rounded-full mx-auto mt-1"></div>}
                 </div>
               </div>
