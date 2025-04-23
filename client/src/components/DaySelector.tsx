@@ -1,12 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { useWorkout } from "@/lib/workoutContext";
 
+// Array of weekday names
+const WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
 interface DaySelectorProps {
   planId: number;
 }
 
+interface Workout {
+  id: number;
+  day: number;
+  name: string;
+  isCompleted?: boolean;
+}
+
 export default function DaySelector({ planId }: DaySelectorProps) {
-  const { data: workouts, isLoading } = useQuery({ 
+  const { data: workouts, isLoading } = useQuery<Workout[]>({ 
     queryKey: [`/api/workout-plans/${planId}/workouts`] 
   });
   
@@ -15,7 +25,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
   const handlePrevious = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
     
-    const currentIndex = workouts.findIndex(w => w.day === activeDay);
+    const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
     if (currentIndex > 0) {
       setActiveDay(workouts[currentIndex - 1].day);
     }
@@ -24,7 +34,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
   const handleNext = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
     
-    const currentIndex = workouts.findIndex(w => w.day === activeDay);
+    const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
     if (currentIndex < workouts.length - 1) {
       setActiveDay(workouts[currentIndex + 1].day);
     }
@@ -77,7 +87,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
       
       <div className="flex overflow-x-auto pb-4" style={{ scrollBehavior: "smooth" }}>
-        {workouts.map((workout) => (
+        {workouts.map((workout: Workout) => (
           <div 
             key={workout.id}
             className={`flex-shrink-0 mx-1 first:ml-0 last:mr-0 cursor-pointer`}
@@ -95,7 +105,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
               } ${workout.isCompleted ? "" : "opacity-50"}`}
             >
               <div>{activeDay === workout.day ? "TODAY" : "DAY"}</div>
-              <div className="text-xl">{workout.day}</div>
+              <div className="text-xl">{WEEKDAYS[(workout.day - 1) % 7]}</div>
             </div>
           </div>
         ))}
@@ -108,7 +118,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
             transition: "all 0.1s ease-in-out"
           }}
           onClick={handlePrevious}
-          disabled={!activeDay || workouts.findIndex(w => w.day === activeDay) <= 0}
+          disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) <= 0}
         >
           <i className="fas fa-chevron-left mr-1"></i> PREVIOUS
         </button>
@@ -119,7 +129,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
             transition: "all 0.1s ease-in-out"
           }}
           onClick={handleNext}
-          disabled={!activeDay || workouts.findIndex(w => w.day === activeDay) >= workouts.length - 1}
+          disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) >= workouts.length - 1}
         >
           NEXT <i className="fas fa-chevron-right ml-1"></i>
         </button>
