@@ -77,7 +77,7 @@ db.exec(`
 
 export class SqliteStorage implements IStorage {
   async getWorkoutPlans(): Promise<WorkoutPlan[]> {
-  	console.log("🔍 using SqliteStorage");
+    console.log("🔍 using SqliteStorage");
     return db.prepare(`SELECT * FROM workout_plans`).all();
   }
 
@@ -127,12 +127,23 @@ export class SqliteStorage implements IStorage {
   }
 
   async updateWorkout(id: number, workout: Partial<InsertWorkout>): Promise<Workout | undefined> {
-    const fields = [];
-    const values = [];
+    const fields: string[] = [];
+    const values: any[] = [];
+
     for (const [key, value] of Object.entries(workout)) {
+      if (value === undefined) continue;
       fields.push(`${key} = ?`);
-      values.push(value);
+      if (typeof value === "boolean") {
+        values.push(value ? 1 : 0);
+      } else if (value instanceof Date) {
+        values.push(value.toISOString());
+      } else {
+        values.push(value);
+      }
     }
+
+    if (fields.length === 0) return this.getWorkout(id);
+
     values.push(id);
     db.prepare(`UPDATE workouts SET ${fields.join(", ")} WHERE id = ?`).run(...values);
     return this.getWorkout(id);
@@ -164,11 +175,29 @@ export class SqliteStorage implements IStorage {
     const fields = [];
     const values = [];
     for (const [key, value] of Object.entries(exercise)) {
+      if (value === undefined) continue;
       fields.push(`${key} = ?`);
-      values.push(value);
+
+      if (typeof value === "boolean") {
+        values.push(value ? 1 : 0);
+      } else if (value instanceof Date) {
+        values.push(value.toISOString());
+      } else {
+        values.push(value);
+      }
     }
+
+    if (fields.length === 0) {
+      return this.getExercise(id);
+    }
+
     values.push(id);
     db.prepare(`UPDATE exercises SET ${fields.join(", ")} WHERE id = ?`).run(...values);
+
+    return this.getExercise(id);
+  }
+
+  private getExercise(id: number): Exercise | undefined {
     return db.prepare(`SELECT * FROM exercises WHERE id = ?`).get(id);
   }
 
@@ -217,7 +246,7 @@ export class SqliteStorage implements IStorage {
     const values = [];
     for (const [key, value] of Object.entries(progress)) {
       fields.push(`${key} = ?`);
-      values.push(value);
+      values.push(value instanceof Date ? value.toISOString() : value);
     }
     values.push(id);
     db.prepare(`UPDATE user_progress SET ${fields.join(", ")} WHERE id = ?`).run(...values);
