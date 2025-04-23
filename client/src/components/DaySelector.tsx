@@ -2,7 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useWorkout } from "@/lib/workoutContext";
 
 // Array of weekday names - starting with Monday as day 1
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+// Duplicate array entries to ensure mod calculation always works
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", 
+                  "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 interface DaySelectorProps {
   planId: number;
@@ -21,6 +23,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
   });
   
   const { activeDay, setActiveDay } = useWorkout();
+  
+  // Function to get week number (1-indexed)
+  const getCurrentWeek = (): number => {
+    if (!activeDay) return 1;
+    return Math.ceil(activeDay / 7);
+  };
   
   const handlePrevious = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
@@ -51,7 +59,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK 1</h2>
         <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">Loading workout days...</div>
       </div>
     );
@@ -68,7 +76,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK 1</h2>
         <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">No workout days available</div>
       </div>
     );
@@ -84,7 +92,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WORKOUT CALENDAR</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK {getCurrentWeek()}</h2>
       
       <div className="flex justify-center pb-4 overflow-x-auto" style={{ scrollBehavior: "smooth" }}>
         <div className="flex space-x-4 px-4 mx-auto">
