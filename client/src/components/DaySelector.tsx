@@ -30,6 +30,13 @@ export default function DaySelector({ planId }: DaySelectorProps) {
     return Math.ceil(activeDay / 7);
   };
   
+  // Function to get total weeks in program
+  const getTotalWeeks = (): number => {
+    if (!workouts || workouts.length === 0) return 1;
+    const maxDay = Math.max(...workouts.map(w => w.day));
+    return Math.ceil(maxDay / 7);
+  };
+  
   const handlePrevious = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
     
@@ -59,7 +66,9 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK 1</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">
+          WEEK 1 <span className="text-lg opacity-70">of 6</span>
+        </h2>
         <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">Loading workout days...</div>
       </div>
     );
@@ -76,7 +85,9 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           position: "relative"
         }}
       >
-        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK 1</h2>
+        <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">
+          WEEK 1 <span className="text-lg opacity-70">of 6</span>
+        </h2>
         <div className="text-center font-['Courier_Prime'] py-4 text-[#6A9C89]">No workout days available</div>
       </div>
     );
@@ -92,7 +103,9 @@ export default function DaySelector({ planId }: DaySelectorProps) {
         position: "relative"
       }}
     >
-      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">WEEK {getCurrentWeek()}</h2>
+      <h2 className="text-2xl font-['Bebas_Neue'] text-[#6A9C89] text-center mb-4 tracking-wider">
+        WEEK {getCurrentWeek()} <span className="text-lg opacity-70">of {getTotalWeeks()}</span>
+      </h2>
       
       <div className="flex justify-center pb-4 overflow-x-auto" style={{ scrollBehavior: "smooth" }}>
         <div className="flex space-x-4 px-4 mx-auto">
