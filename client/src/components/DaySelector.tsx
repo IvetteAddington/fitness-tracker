@@ -2,9 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useWorkout } from "@/lib/workoutContext";
 
 // Array of weekday names - starting with Monday as day 1
-// Duplicate array entries to ensure mod calculation always works
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun", 
-                  "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
 interface DaySelectorProps {
   planId: number;
@@ -37,21 +35,58 @@ export default function DaySelector({ planId }: DaySelectorProps) {
     return Math.ceil(maxDay / 7);
   };
   
+  // Get the days for the current week
+  const getCurrentWeekWorkouts = (): Workout[] => {
+    if (!workouts || workouts.length === 0) return [];
+    
+    const currentWeek = getCurrentWeek();
+    const startDay = (currentWeek - 1) * 7 + 1;
+    const endDay = currentWeek * 7;
+    
+    return workouts.filter(w => w.day >= startDay && w.day <= endDay);
+  };
+  
   const handlePrevious = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
     
-    const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
-    if (currentIndex > 0) {
-      setActiveDay(workouts[currentIndex - 1].day);
+    const currentWeek = getCurrentWeek();
+    // If we're at the first day of the week and not in the first week, go to previous week
+    if (activeDay % 7 === 1 && currentWeek > 1) {
+      // Go to the last day of the previous week
+      const prevWeekLastDay = (currentWeek - 1) * 7;
+      const workout = workouts.find(w => w.day === prevWeekLastDay);
+      if (workout) {
+        setActiveDay(workout.day);
+      }
+    } else {
+      // Otherwise just go to the previous day
+      const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
+      if (currentIndex > 0) {
+        setActiveDay(workouts[currentIndex - 1].day);
+      }
     }
   };
   
   const handleNext = () => {
     if (!workouts || workouts.length === 0 || !activeDay) return;
     
-    const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
-    if (currentIndex < workouts.length - 1) {
-      setActiveDay(workouts[currentIndex + 1].day);
+    const currentWeek = getCurrentWeek();
+    const totalWeeks = getTotalWeeks();
+    
+    // If we're at the last day of the week and not in the last week, go to next week
+    if (activeDay % 7 === 0 && currentWeek < totalWeeks) {
+      // Go to the first day of the next week
+      const nextWeekFirstDay = currentWeek * 7 + 1;
+      const workout = workouts.find(w => w.day === nextWeekFirstDay);
+      if (workout) {
+        setActiveDay(workout.day);
+      }
+    } else {
+      // Otherwise just go to the next day
+      const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
+      if (currentIndex < workouts.length - 1) {
+        setActiveDay(workouts[currentIndex + 1].day);
+      }
     }
   };
   
@@ -109,7 +144,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       
       <div className="flex justify-center pb-4 overflow-x-auto" style={{ scrollBehavior: "smooth" }}>
         <div className="flex space-x-4 px-4 mx-auto">
-          {workouts.map((workout: Workout) => (
+          {getCurrentWeekWorkouts().map((workout: Workout) => (
             <div 
               key={workout.id}
               className={`flex-shrink-0 cursor-pointer`}
@@ -145,7 +180,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           onClick={handlePrevious}
           disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) <= 0}
         >
-          <i className="fas fa-chevron-left mr-1"></i> PREVIOUS
+          <i className="fas fa-chevron-left mr-1"></i> {activeDay && activeDay % 7 === 1 && getCurrentWeek() > 1 ? "PREVIOUS WEEK" : "PREVIOUS"}
         </button>
         
         <button 
@@ -156,7 +191,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
           onClick={handleNext}
           disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) >= workouts.length - 1}
         >
-          NEXT <i className="fas fa-chevron-right ml-1"></i>
+          {activeDay && activeDay % 7 === 0 && getCurrentWeek() < getTotalWeeks() ? "NEXT WEEK" : "NEXT"} <i className="fas fa-chevron-right ml-1"></i>
         </button>
       </div>
     </div>
