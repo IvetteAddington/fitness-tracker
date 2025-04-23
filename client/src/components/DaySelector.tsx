@@ -17,7 +17,13 @@ interface Workout {
 
 export default function DaySelector({ planId }: DaySelectorProps) {
   const { data: workouts, isLoading } = useQuery<Workout[]>({ 
-    queryKey: [`/api/workout-plans/${planId}/workouts`] 
+    queryKey: [`/api/workout-plans/${planId}/workouts`],
+    onSuccess: (data) => {
+      // If we have workouts but no active day is set, set it to the first day
+      if (data?.length > 0 && !activeDay) {
+        setActiveDay(data[0].day);
+      }
+    }
   });
   
   const { activeDay, setActiveDay } = useWorkout();
@@ -58,6 +64,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       if (workout) {
         setActiveDay(workout.day);
       }
+    } else if (activeDay % 7 === 1) {
+      // If it's Monday but there are previous days, go to the previous day
+      const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
+      if (currentIndex > 0) {
+        setActiveDay(workouts[currentIndex - 1].day);
+      }
     } else {
       // Otherwise just go to the previous day
       const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
@@ -80,6 +92,12 @@ export default function DaySelector({ planId }: DaySelectorProps) {
       const workout = workouts.find(w => w.day === nextWeekFirstDay);
       if (workout) {
         setActiveDay(workout.day);
+      }
+    } else if (activeDay % 7 === 0) {
+      // If it's Sunday but there's still more days, go to the next day
+      const currentIndex = workouts.findIndex((w: Workout) => w.day === activeDay);
+      if (currentIndex < workouts.length - 1) {
+        setActiveDay(workouts[currentIndex + 1].day);
       }
     } else {
       // Otherwise just go to the next day
@@ -178,7 +196,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
             transition: "all 0.1s ease-in-out"
           }}
           onClick={handlePrevious}
-          disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) <= 0}
+          disabled={!activeDay || activeDay <= 1}
         >
           <i className="fas fa-chevron-left mr-1"></i> {activeDay && activeDay % 7 === 1 && getCurrentWeek() > 1 ? "PREVIOUS WEEK" : "PREVIOUS"}
         </button>
@@ -189,7 +207,7 @@ export default function DaySelector({ planId }: DaySelectorProps) {
             transition: "all 0.1s ease-in-out"
           }}
           onClick={handleNext}
-          disabled={!activeDay || workouts.findIndex((w: Workout) => w.day === activeDay) >= workouts.length - 1}
+          disabled={!activeDay || activeDay >= workouts[workouts.length - 1].day}
         >
           {activeDay && activeDay % 7 === 0 && getCurrentWeek() < getTotalWeeks() ? "NEXT WEEK" : "NEXT"} <i className="fas fa-chevron-right ml-1"></i>
         </button>
