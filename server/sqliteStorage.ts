@@ -94,6 +94,22 @@ export class SqliteStorage implements IStorage {
     return db.prepare(`SELECT * FROM workout_plans WHERE id = ?`).get(id);
   }
 
+  async deleteWorkoutPlan(id: number): Promise<void> {
+    db.prepare(`DELETE FROM workout_plans WHERE id = ?`).run(id);
+  }
+
+  async deleteWorkoutsByPlanId(planId: number): Promise<void> {
+    db.prepare(`DELETE FROM workouts WHERE workout_plan_id = ?`).run(planId);
+  }
+
+  async deleteExercisesByWorkoutId(workoutId: number): Promise<void> {
+    db.prepare(`DELETE FROM exercises WHERE workout_id = ?`).run(workoutId);
+  }
+
+  async deleteUserProgressByPlanId(userId: number, planId: number): Promise<void> {
+    db.prepare(`DELETE FROM user_progress WHERE user_id = ? AND workout_plan_id = ?`).run(userId, planId);
+  }
+
   async createWorkout(workout: InsertWorkout): Promise<Workout> {
     const stmt = db.prepare(`
       INSERT INTO workouts (workout_plan_id, day, name, notes, is_completed, completed_at)
@@ -133,13 +149,7 @@ export class SqliteStorage implements IStorage {
     for (const [key, value] of Object.entries(workout)) {
       if (value === undefined) continue;
       fields.push(`${key} = ?`);
-      if (typeof value === "boolean") {
-        values.push(value ? 1 : 0);
-      } else if (value instanceof Date) {
-        values.push(value.toISOString());
-      } else {
-        values.push(value);
-      }
+      values.push(typeof value === "boolean" ? (value ? 1 : 0) : value instanceof Date ? value.toISOString() : value);
     }
 
     if (fields.length === 0) return this.getWorkout(id);
@@ -177,23 +187,13 @@ export class SqliteStorage implements IStorage {
     for (const [key, value] of Object.entries(exercise)) {
       if (value === undefined) continue;
       fields.push(`${key} = ?`);
-
-      if (typeof value === "boolean") {
-        values.push(value ? 1 : 0);
-      } else if (value instanceof Date) {
-        values.push(value.toISOString());
-      } else {
-        values.push(value);
-      }
+      values.push(typeof value === "boolean" ? (value ? 1 : 0) : value instanceof Date ? value.toISOString() : value);
     }
 
-    if (fields.length === 0) {
-      return this.getExercise(id);
-    }
+    if (fields.length === 0) return this.getExercise(id);
 
     values.push(id);
     db.prepare(`UPDATE exercises SET ${fields.join(", ")} WHERE id = ?`).run(...values);
-
     return this.getExercise(id);
   }
 

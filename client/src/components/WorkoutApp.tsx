@@ -63,7 +63,7 @@ export default function WorkoutApp() {
           <div className="lg:col-span-1">
             <UploadSection />
 
-            {plans?.length && activePlan && (
+            {!!plans?.length && activePlan && (
               <div
                 className="mb-6 p-4 rounded border-2 shadow"
                 style={{

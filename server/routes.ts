@@ -47,6 +47,31 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     res.json(plan);
   });
+
+  //delete workout plan
+  app.delete("/api/workout-plans/:id", async (req, res) => {
+  const id = parseInt(req.params.id);
+  if (isNaN(id)) {
+    return res.status(400).json({ message: "Invalid workout plan ID" });
+  }
+
+  try {
+    // Optionally: delete exercises → workouts → progress → plan
+    const workouts = await storage.getWorkoutsByPlanId(id);
+    for (const workout of workouts) {
+      await storage.deleteExercisesByWorkoutId(workout.id);
+    }
+
+    await storage.deleteWorkoutsByPlanId(id);
+    await storage.deleteUserProgressByPlanId(defaultUser.id, id);
+    await storage.deleteWorkoutPlan(id);
+
+    res.status(204).send(); // No content, success
+  } catch (err) {
+    console.error("Failed to delete workout plan:", err);
+    res.status(500).json({ message: "Failed to delete workout plan" });
+  }
+});
   
   // Upload new workout plan
   app.post("/api/workout-plans", async (req, res) => {

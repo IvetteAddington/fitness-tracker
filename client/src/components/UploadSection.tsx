@@ -237,7 +237,7 @@ export default function UploadSection() {
   };
 
   return (
-    <div className="space-y-4">
+    <div>
       <div 
         className="mb-8 p-5"
         style={{
