@@ -16,12 +16,40 @@ export async function parseWorkoutPlanFromURL(url: string): Promise<WorkoutPlanF
   // ---------------------------------------------------------------------------
   // 1. Fetch the remote content
   // ---------------------------------------------------------------------------
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch url (${res.status}): ${res.statusText}`);
+  let res: Response;
+  try {
+    res = await fetch(url, { redirect: "follow" });
+  } catch (err) {
+    throw new Error(`Network error while fetching URL: ${(err as Error).message}`);
   }
-  const contentType = res.headers.get("content-type") ?? "";
-  const rawText = await res.text();
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch URL. HTTP ${res.status}: ${res.statusText}`);
+  }
+
+  // Limit payload size to ~1 MB to avoid OOM when users pass giant pages
+  const maxBytes = 1024 * 1024;
+  const reader = res.body?.getReader();
+  let rawText = "";
+  if (reader) {
+    const decoder = new TextDecoder();
+    let received = 0;
+    while (true) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      received += value.length;
+      if (received > maxBytes) {
+        reader.cancel();
+        throw new Error("Response too large – aborting");
+      }
+      rawText += decoder.decode(value, { stream: true });
+    }
+    rawText += decoder.decode();
+  } else {
+    rawText = await res.text();
+  }
+
+  const contentType = (res.headers.get("content-type") ?? "").toLowerCase();
 
   // ---------------------------------------------------------------------------
   // 2. If the remote resource is JSON, attempt to parse it directly – this lets
@@ -39,9 +67,13 @@ export async function parseWorkoutPlanFromURL(url: string): Promise<WorkoutPlanF
   //    the raw text.
   // ---------------------------------------------------------------------------
   let textContent = rawText;
-  if (contentType.includes("html")) {
+  if (contentType.includes("html") || url.endsWith(".html") || url.includes("youtube.com")) {
     const $ = load(rawText);
     textContent = $("body").text();
+  }
+  // Simple CSV detection
+  else if (contentType.includes("csv") || url.endsWith(".csv")) {
+    // already plain text – keep as is
   }
 
   // ---------------------------------------------------------------------------
