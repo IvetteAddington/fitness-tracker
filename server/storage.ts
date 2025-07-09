@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { 
   users, type User, type InsertUser,
   workoutPlans, type WorkoutPlan, type InsertWorkoutPlan,
@@ -97,11 +96,14 @@ export class MemStorage implements IStorage {
   // Workout operations
   async createWorkout(workout: InsertWorkout): Promise<Workout> {
     const id = this.workoutId++;
-    const newWorkout: Workout = { 
-      ...workout, 
-      id, 
-      isCompleted: workout.isCompleted || false,
-      completedAt: workout.isCompleted ? new Date() : null
+    const newWorkout: Workout = {
+      id,
+      name: workout.name,
+      day: workout.day,
+      notes: workout.notes ?? null,
+      workoutPlanId: workout.workoutPlanId ?? null,
+      isCompleted: workout.isCompleted ?? false,
+      completedAt: workout.isCompleted ? new Date() : null,
     };
     this.workouts.set(id, newWorkout);
     return newWorkout;
@@ -145,10 +147,14 @@ export class MemStorage implements IStorage {
   // Exercise operations
   async createExercise(exercise: InsertExercise): Promise<Exercise> {
     const id = this.exerciseId++;
-    const newExercise: Exercise = { 
-      ...exercise, 
-      id, 
-      isCompleted: exercise.isCompleted || false 
+    const newExercise: Exercise = {
+      id,
+      name: exercise.name,
+      sets: exercise.sets,
+      reps: exercise.reps,
+      notes: exercise.notes ?? null,
+      workoutId: exercise.workoutId ?? null,
+      isCompleted: exercise.isCompleted ?? false,
     };
     this.exercises.set(id, newExercise);
     return newExercise;
@@ -171,14 +177,15 @@ export class MemStorage implements IStorage {
   // Progress operations
   async createUserProgress(progress: InsertUserProgress): Promise<UserProgress> {
     const id = this.progressId++;
-    const newProgress: UserProgress = { 
-      ...progress, 
-      id, 
-      currentDay: progress.currentDay || 1,
-      completedDays: progress.completedDays || 0,
-      currentStreak: progress.currentStreak || 0,
-      longestStreak: progress.longestStreak || 0,
-      lastCompletedAt: null
+    const newProgress: UserProgress = {
+      id,
+      userId: progress.userId ?? null,
+      workoutPlanId: progress.workoutPlanId ?? null,
+      currentDay: progress.currentDay ?? 1,
+      completedDays: progress.completedDays ?? 0,
+      currentStreak: progress.currentStreak ?? 0,
+      longestStreak: progress.longestStreak ?? 0,
+      lastCompletedAt: null,
     };
     this.userProgress.set(id, newProgress);
     return newProgress;

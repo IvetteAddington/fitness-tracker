@@ -1,15 +1,19 @@
-// @ts-nocheck
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
+import { IStorage } from "./storage";
 import {
-  IStorage,
-  type InsertUser, type User,
-  type InsertWorkoutPlan, type WorkoutPlan,
-  type InsertWorkout, type Workout,
-  type InsertExercise, type Exercise,
-  type InsertUserProgress, type UserProgress
-} from "./storage";
+  type InsertUser,
+  type User,
+  type InsertWorkoutPlan,
+  type WorkoutPlan,
+  type InsertWorkout,
+  type Workout,
+  type InsertExercise,
+  type Exercise,
+  type InsertUserProgress,
+  type UserProgress,
+} from "@shared/schema";
 
 import { fileURLToPath } from "url";
 import { dirname } from "path";
