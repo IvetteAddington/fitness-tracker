@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { 
@@ -29,13 +29,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const defaultUser = await setupDefaultUser();
   
   // Get all workout plans
-  app.get("/api/workout-plans", async (req, res) => {
+  app.get("/api/workout-plans", async (req: Request, res: Response) => {
     const plans = await storage.getWorkoutPlans();
     res.json(plans);
   });
   
   // Get specific workout plan
-  app.get("/api/workout-plans/:id", async (req, res) => {
+  app.get("/api/workout-plans/:id", async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid workout plan ID" });
@@ -50,7 +50,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   //delete workout plan
-  app.delete("/api/workout-plans/:id", async (req, res) => {
+  app.delete("/api/workout-plans/:id", async (req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   if (isNaN(id)) {
     return res.status(400).json({ message: "Invalid workout plan ID" });
@@ -75,7 +75,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 });
   
   // Upload new workout plan
-  app.post("/api/workout-plans", async (req, res) => {
+  app.post("/api/workout-plans", async (req: Request, res: Response) => {
     try {
       // Validate the workout plan data
       const workoutPlanData = workoutPlanFileSchema.parse(req.body);
@@ -133,7 +133,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Import workout plan from external URL
-  app.post("/api/workout-plans/import-url", async (req, res) => {
+  app.post("/api/workout-plans/import-url", async (req: Request, res: Response) => {
     const { url } = req.body as { url?: string };
     if (!url || typeof url !== "string") {
       return res.status(400).json({ message: "A valid 'url' must be provided in the request body" });
@@ -189,7 +189,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get workouts for a plan
-  app.get("/api/workout-plans/:id/workouts", async (req, res) => {
+  app.get("/api/workout-plans/:id/workouts", async (req: Request, res: Response) => {
     const planId = parseInt(req.params.id);
     if (isNaN(planId)) {
       return res.status(400).json({ message: "Invalid workout plan ID" });
@@ -200,7 +200,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get a specific workout by plan ID and day
-  app.get("/api/workout-plans/:id/workouts/day/:day", async (req, res) => {
+  app.get("/api/workout-plans/:id/workouts/day/:day", async (req: Request, res: Response) => {
     const planId = parseInt(req.params.id);
     const day = parseInt(req.params.day);
     
@@ -223,7 +223,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Mark workout as completed
-  app.put("/api/workouts/:id/complete", async (req, res) => {
+  app.put("/api/workouts/:id/complete", async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid workout ID" });
@@ -266,7 +266,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Mark exercise as completed
-  app.put("/api/exercises/:id/complete", async (req, res) => {
+  app.put("/api/exercises/:id/complete", async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     if (isNaN(id)) {
       return res.status(400).json({ message: "Invalid exercise ID" });
@@ -284,7 +284,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
   
   // Get progress for a workout plan
-  app.get("/api/workout-plans/:id/progress", async (req, res) => {
+  app.get("/api/workout-plans/:id/progress", async (req: Request, res: Response) => {
     const planId = parseInt(req.params.id);
     if (isNaN(planId)) {
       return res.status(400).json({ message: "Invalid workout plan ID" });
