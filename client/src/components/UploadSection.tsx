@@ -10,6 +10,7 @@ import ManualEntryForm from "./ManualEntryForm";
 
 export default function UploadSection() {
   const [file, setFile] = useState<File | null>(null);
+  const [importUrl, setImportUrl] = useState<string>("");
   const { toast } = useToast();
   const { setActivePlan } = useWorkout();
 
@@ -236,6 +237,42 @@ export default function UploadSection() {
     uploadMutation.mutate(samplePlan);
   };
 
+  // Import workout plan from external URL
+  const importUrlMutation = useMutation({
+    mutationFn: async (url: string) => {
+      const response = await apiRequest("POST", "/api/workout-plans/import-url", { url });
+      return response.json();
+    },
+    onSuccess: (data) => {
+      toast({
+        title: "Success!",
+        description: "Workout plan imported from URL.",
+      });
+      setImportUrl("");
+      queryClient.invalidateQueries({ queryKey: ["/api/workout-plans"] });
+      setActivePlan(data);
+    },
+    onError: (error) => {
+      toast({
+        title: "Import failed",
+        description: error.message || "Unable to import workout plan from the provided URL.",
+        variant: "destructive",
+      });
+    },
+  });
+
+  const handleImportUrl = () => {
+    if (!importUrl.trim()) {
+      toast({
+        title: "No URL provided",
+        description: "Please enter a URL containing workout details.",
+        variant: "destructive",
+      });
+      return;
+    }
+    importUrlMutation.mutate(importUrl.trim());
+  };
+
   return (
     <div>
       <div 
@@ -308,6 +345,29 @@ export default function UploadSection() {
           >
             No file? Try sample workout plan
           </button>
+        </div>
+
+        {/* URL import section */}
+        <div className="mt-8 p-4 border-2 border-dashed border-[#6A9C89] bg-[#F8FFF5]">
+          <h3 className="font-['Courier_Prime'] text-[#6A9C89] mb-2 font-bold text-center">
+            IMPORT FROM URL (YouTube / Webpage)
+          </h3>
+          <div className="flex flex-col md:flex-row gap-2">
+            <input
+              type="text"
+              placeholder="https://example.com/workout"
+              value={importUrl}
+              onChange={(e) => setImportUrl(e.target.value)}
+              className="flex-1 p-2 border border-[#A9C0A6] rounded"
+            />
+            <button
+              onClick={handleImportUrl}
+              className="bg-[#6A9C89] text-white px-4 py-2 rounded font-['Bebas_Neue']"
+              disabled={importUrlMutation.isPending}
+            >
+              {importUrlMutation.isPending ? "IMPORTING..." : "IMPORT"}
+            </button>
+          </div>
         </div>
       </div>
       

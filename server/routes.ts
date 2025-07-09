@@ -9,6 +9,7 @@ import {
   insertUserProgressSchema
 } from "@shared/schema";
 import { z } from "zod";
+import { parseWorkoutPlanFromURL } from "./utils/urlWorkoutParser";
 
 // Create a default user for demo purposes
 async function setupDefaultUser() {
@@ -128,6 +129,62 @@ export async function registerRoutes(app: Express): Promise<Server> {
         });
       }
       res.status(500).json({ message: "Failed to create workout plan" });
+    }
+  });
+
+  // Import workout plan from external URL
+  app.post("/api/workout-plans/import-url", async (req, res) => {
+    const { url } = req.body as { url?: string };
+    if (!url || typeof url !== "string") {
+      return res.status(400).json({ message: "A valid 'url' must be provided in the request body" });
+    }
+
+    try {
+      const workoutPlanData = await parseWorkoutPlanFromURL(url);
+
+      // Create workout plan
+      const newPlan = await storage.createWorkoutPlan({
+        name: workoutPlanData.name,
+        totalDays: workoutPlanData.totalDays,
+        userId: defaultUser.id,
+      });
+
+      // Create workouts and exercises
+      for (const workoutData of workoutPlanData.workouts) {
+        const newWorkout = await storage.createWorkout({
+          day: workoutData.day,
+          name: workoutData.name,
+          notes: workoutData.notes || "",
+          workoutPlanId: newPlan.id,
+          isCompleted: false,
+        });
+
+        for (const exerciseData of workoutData.exercises) {
+          await storage.createExercise({
+            name: exerciseData.name,
+            sets: exerciseData.sets,
+            reps: exerciseData.reps,
+            notes: exerciseData.notes || "",
+            workoutId: newWorkout.id,
+            isCompleted: false,
+          });
+        }
+      }
+
+      // Initialise progress
+      await storage.createUserProgress({
+        userId: defaultUser.id,
+        workoutPlanId: newPlan.id,
+        currentDay: 1,
+        completedDays: 0,
+        currentStreak: 0,
+        longestStreak: 0,
+      });
+
+      return res.status(201).json(newPlan);
+    } catch (err) {
+      console.error("Failed to import workout plan from URL:", err);
+      return res.status(500).json({ message: (err as Error).message || "Failed to import workout plan" });
     }
   });
   
