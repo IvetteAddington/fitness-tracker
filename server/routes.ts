@@ -240,26 +240,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
     
     // Update user progress
-    const userProgress = await storage.getUserProgressByPlanId(defaultUser.id, workout.workoutPlanId);
-    if (userProgress) {
-      // Check if this is the next day in sequence
-      const isNextDay = userProgress.currentDay === workout.day;
-      
-      // Calculate new streak
-      let newStreak = userProgress.currentStreak;
-      let lastCompletedDate = userProgress.lastCompletedAt;
-      
-      // If this is the next day, increment the streak
-      if (isNextDay) {
-        newStreak++;
+    if (workout.workoutPlanId !== null) {
+      const userProgress = await storage.getUserProgressByPlanId(defaultUser.id, workout.workoutPlanId);
+      if (userProgress) {
+        const isNextDay = (userProgress.currentDay ?? 0) === workout.day;
+        let newStreak = userProgress.currentStreak ?? 0;
+        if (isNextDay) newStreak++;
+
+        await storage.updateUserProgress(userProgress.id, {
+          completedDays: (userProgress.completedDays ?? 0) + 1,
+          currentDay: isNextDay ? workout.day + 1 : (userProgress.currentDay ?? 1),
+          currentStreak: newStreak,
+          longestStreak: Math.max(newStreak, userProgress.longestStreak ?? 0),
+        });
       }
-      
-      await storage.updateUserProgress(userProgress.id, {
-        completedDays: userProgress.completedDays + 1,
-        currentDay: isNextDay ? workout.day + 1 : userProgress.currentDay,
-        currentStreak: newStreak,
-        longestStreak: Math.max(newStreak, userProgress.longestStreak)
-      });
     }
     
     res.json(updatedWorkout);
@@ -310,7 +304,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     
     // Calculate completion percentage
     const completionPercentage = plan.totalDays > 0 
-      ? Math.round((progress.completedDays / plan.totalDays) * 100) 
+      ? Math.round(((progress.completedDays ?? 0) / plan.totalDays) * 100) 
       : 0;
     
     res.json({

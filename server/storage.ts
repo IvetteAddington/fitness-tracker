@@ -80,7 +80,7 @@ export class MemStorage implements IStorage {
   async createWorkoutPlan(plan: InsertWorkoutPlan): Promise<WorkoutPlan> {
     const id = this.planId++;
     const createdAt = new Date();
-    const workoutPlan: WorkoutPlan = { ...plan, id, createdAt };
+    const workoutPlan: WorkoutPlan = { ...plan, id, userId: plan.userId ?? null, createdAt };
     this.workoutPlans.set(id, workoutPlan);
     return workoutPlan;
   }
@@ -202,15 +202,15 @@ export class MemStorage implements IStorage {
     
     // Update lastCompletedAt if completedDays is increasing
     let lastCompletedAt = existingProgress.lastCompletedAt;
-    if (progress.completedDays !== undefined && 
-        progress.completedDays > existingProgress.completedDays) {
+    if (progress.completedDays != null && 
+        progress.completedDays > (existingProgress.completedDays ?? 0)) {
       lastCompletedAt = new Date();
     }
     
     // Update longestStreak if currentStreak is greater
     let longestStreak = existingProgress.longestStreak;
-    if (progress.currentStreak !== undefined && 
-        progress.currentStreak > existingProgress.longestStreak) {
+    if (progress.currentStreak != null && 
+        progress.currentStreak > (existingProgress.longestStreak ?? 0)) {
       longestStreak = progress.currentStreak;
     }
     

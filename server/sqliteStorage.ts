@@ -83,7 +83,7 @@ db.exec(`
 export class SqliteStorage implements IStorage {
   async getWorkoutPlans(): Promise<WorkoutPlan[]> {
     console.log("🔍 using SqliteStorage");
-    return db.prepare(`SELECT * FROM workout_plans`).all();
+    return db.prepare(`SELECT * FROM workout_plans`).all([]) as WorkoutPlan[];
   }
 
   async createWorkoutPlan(plan: InsertWorkoutPlan): Promise<WorkoutPlan> {
@@ -92,11 +92,12 @@ export class SqliteStorage implements IStorage {
       VALUES (?, ?, ?)
     `);
     const result = stmt.run(plan.name, plan.totalDays, new Date().toISOString());
-    return { id: result.lastInsertRowid, ...plan, createdAt: new Date() };
+    const id = Number(result.lastInsertRowid);
+    return { id, ...plan, createdAt: new Date() } as WorkoutPlan;
   }
 
   async getWorkoutPlan(id: number): Promise<WorkoutPlan | undefined> {
-    return db.prepare(`SELECT * FROM workout_plans WHERE id = ?`).get(id);
+    return db.prepare(`SELECT * FROM workout_plans WHERE id = ?`).get(id) as WorkoutPlan | undefined;
   }
 
   async deleteWorkoutPlan(id: number): Promise<void> {
@@ -128,23 +129,19 @@ export class SqliteStorage implements IStorage {
       workout.isCompleted || 0,
       workout.isCompleted ? new Date().toISOString() : null
     );
-    return { id: result.lastInsertRowid, ...workout };
+    return { id: Number(result.lastInsertRowid), ...workout } as Workout;
   }
 
   async getWorkout(id: number): Promise<Workout | undefined> {
-    return db.prepare(`SELECT * FROM workouts WHERE id = ?`).get(id);
+    return db.prepare(`SELECT * FROM workouts WHERE id = ?`).get(id) as Workout | undefined;
   }
 
   async getWorkoutsByPlanId(planId: number): Promise<Workout[]> {
-    return db.prepare(`
-      SELECT * FROM workouts WHERE workout_plan_id = ? ORDER BY day ASC
-    `).all(planId);
+    return db.prepare(`SELECT * FROM workouts WHERE workout_plan_id = ? ORDER BY day ASC`).all(planId) as Workout[];
   }
 
   async getWorkoutByPlanIdAndDay(planId: number, day: number): Promise<Workout | undefined> {
-    return db.prepare(`
-      SELECT * FROM workouts WHERE workout_plan_id = ? AND day = ?
-    `).get(planId, day);
+    return db.prepare(`SELECT * FROM workouts WHERE workout_plan_id = ? AND day = ?`).get(planId, day) as Workout | undefined;
   }
 
   async updateWorkout(id: number, workout: Partial<InsertWorkout>): Promise<Workout | undefined> {
@@ -154,7 +151,7 @@ export class SqliteStorage implements IStorage {
     for (const [key, value] of Object.entries(workout)) {
       if (value === undefined) continue;
       fields.push(`${key} = ?`);
-      values.push(typeof value === "boolean" ? (value ? 1 : 0) : value instanceof Date ? value.toISOString() : value);
+      values.push(typeof value === "boolean" ? (value ? 1 : 0) : (value as any) instanceof Date ? (value as unknown as Date).toISOString() : value);
     }
 
     if (fields.length === 0) return this.getWorkout(id);
@@ -174,16 +171,17 @@ export class SqliteStorage implements IStorage {
       exercise.name,
       exercise.sets,
       exercise.reps,
-      exercise.notes || "",
-      exercise.isCompleted || 0,
-      exercise.isSuperset || 0,
-      exercise.supersetWith || ""
+      exercise.notes ?? "",
+      exercise.isCompleted ?? 0,
+      /* is_superset */ 0,
+      /* superset_with */ ""
     );
-    return { id: result.lastInsertRowid, ...exercise };
+    const id = Number(result.lastInsertRowid);
+    return { id, ...exercise } as Exercise;
   }
 
   async getExercisesByWorkoutId(workoutId: number): Promise<Exercise[]> {
-    return db.prepare(`SELECT * FROM exercises WHERE workout_id = ?`).all(workoutId);
+    return db.prepare(`SELECT * FROM exercises WHERE workout_id = ?`).all(workoutId) as Exercise[];
   }
 
   async updateExercise(id: number, exercise: Partial<InsertExercise>): Promise<Exercise | undefined> {
@@ -192,7 +190,7 @@ export class SqliteStorage implements IStorage {
     for (const [key, value] of Object.entries(exercise)) {
       if (value === undefined) continue;
       fields.push(`${key} = ?`);
-      values.push(typeof value === "boolean" ? (value ? 1 : 0) : value instanceof Date ? value.toISOString() : value);
+      values.push(typeof value === "boolean" ? (value ? 1 : 0) : (value as any) instanceof Date ? (value as unknown as Date).toISOString() : value);
     }
 
     if (fields.length === 0) return this.getExercise(id);
@@ -203,7 +201,7 @@ export class SqliteStorage implements IStorage {
   }
 
   private getExercise(id: number): Exercise | undefined {
-    return db.prepare(`SELECT * FROM exercises WHERE id = ?`).get(id);
+    return db.prepare(`SELECT * FROM exercises WHERE id = ?`).get(id) as Exercise | undefined;
   }
 
   async createUser(user: InsertUser): Promise<User> {
@@ -211,16 +209,17 @@ export class SqliteStorage implements IStorage {
       INSERT INTO users (username, email, created_at)
       VALUES (?, ?, ?)
     `);
-    const result = stmt.run(user.username, user.email, new Date().toISOString());
-    return { id: result.lastInsertRowid, ...user };
+    const result = stmt.run(user.username, null, new Date().toISOString());
+    const id = Number(result.lastInsertRowid);
+    return { id, ...user } as User;
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    return db.prepare(`SELECT * FROM users WHERE id = ?`).get(id);
+    return db.prepare(`SELECT * FROM users WHERE id = ?`).get(id) as User | undefined;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return db.prepare(`SELECT * FROM users WHERE username = ?`).get(username);
+    return db.prepare(`SELECT * FROM users WHERE username = ?`).get(username) as User | undefined;
   }
 
   async createUserProgress(progress: InsertUserProgress): Promise<UserProgress> {
@@ -237,13 +236,11 @@ export class SqliteStorage implements IStorage {
       progress.longestStreak || 0,
       null
     );
-    return { id: result.lastInsertRowid, ...progress };
+    return { id: Number(result.lastInsertRowid), ...progress } as UserProgress;
   }
 
   async getUserProgressByPlanId(userId: number, planId: number): Promise<UserProgress | undefined> {
-    return db.prepare(`
-      SELECT * FROM user_progress WHERE user_id = ? AND workout_plan_id = ?
-    `).get(userId, planId);
+    return db.prepare(`SELECT * FROM user_progress WHERE user_id = ? AND workout_plan_id = ?`).get(userId, planId) as UserProgress | undefined;
   }
 
   async updateUserProgress(id: number, progress: Partial<InsertUserProgress>): Promise<UserProgress | undefined> {
@@ -251,10 +248,10 @@ export class SqliteStorage implements IStorage {
     const values = [];
     for (const [key, value] of Object.entries(progress)) {
       fields.push(`${key} = ?`);
-      values.push(value instanceof Date ? value.toISOString() : value);
+      values.push((value as any) instanceof Date ? (value as unknown as Date).toISOString() : value);
     }
     values.push(id);
     db.prepare(`UPDATE user_progress SET ${fields.join(", ")} WHERE id = ?`).run(...values);
-    return db.prepare(`SELECT * FROM user_progress WHERE id = ?`).get(id);
+    return db.prepare(`SELECT * FROM user_progress WHERE id = ?`).get(id) as UserProgress | undefined;
   }
 }
