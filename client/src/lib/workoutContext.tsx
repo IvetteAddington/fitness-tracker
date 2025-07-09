@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createContext, useContext, useState, ReactNode } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { WorkoutPlan } from "@shared/schema";

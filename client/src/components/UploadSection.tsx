@@ -7,6 +7,7 @@ import { WorkoutPlanFile } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useWorkout } from "@/lib/workoutContext";
 import ManualEntryForm from "./ManualEntryForm";
+import * as React from "react";
 
 export default function UploadSection() {
   const [file, setFile] = useState<File | null>(null);

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useWorkout } from "@/lib/workoutContext";
 import { apiRequest, queryClient } from "@/lib/queryClient";

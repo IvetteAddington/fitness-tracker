@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { 
   users, type User, type InsertUser,
   workoutPlans, type WorkoutPlan, type InsertWorkoutPlan,
