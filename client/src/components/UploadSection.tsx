@@ -1,9 +1,9 @@
 import { useState } from "react";
+import type { WorkoutPlan, WorkoutPlanFile } from "@shared/schema";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { parseWorkoutFile } from "@/lib/fileParser";
-import { WorkoutPlanFile } from "@shared/schema";
 import { queryClient } from "@/lib/queryClient";
 import { useWorkout } from "@/lib/workoutContext";
 import ManualEntryForm from "./ManualEntryForm";
@@ -15,10 +15,10 @@ export default function UploadSection() {
   const { toast } = useToast();
   const { setActivePlan } = useWorkout();
 
-  const uploadMutation = useMutation({
+  const uploadMutation = useMutation<WorkoutPlan, Error, WorkoutPlanFile>({
     mutationFn: async (workoutPlan: WorkoutPlanFile) => {
       const response = await apiRequest("POST", "/api/workout-plans", workoutPlan);
-      return response.json();
+      return (await response.json()) as WorkoutPlan;
     },
     onSuccess: (data) => {
       toast({
@@ -239,10 +239,10 @@ export default function UploadSection() {
   };
 
   // Import workout plan from external URL
-  const importUrlMutation = useMutation({
+  const importUrlMutation = useMutation<WorkoutPlan, Error, string>({
     mutationFn: async (url: string) => {
       const response = await apiRequest("POST", "/api/workout-plans/import-url", { url });
-      return response.json();
+      return (await response.json()) as WorkoutPlan;
     },
     onSuccess: (data) => {
       toast({
